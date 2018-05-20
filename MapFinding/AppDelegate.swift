@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    var APIKey = "AIzaSyCodndO4xHHgof1F3omVMpxJ_kNy1-8x18"
+    var APIKey = "AIzaSyCqfMT5I-TaHa0-D7T4JrhCglzXxSALWc0"
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         

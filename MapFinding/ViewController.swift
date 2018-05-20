@@ -11,15 +11,12 @@ import GoogleMaps
 import GooglePlaces
 import CoreLocation
 
-
-var APIKey = "AIzaSyCodndO4xHHgof1F3omVMpxJ_kNy1-8x18"
-
+var APIKey = "AIzaSyCqfMT5I-TaHa0-D7T4JrhCglzXxSALWc0"
 
 class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UISearchBarDelegate {
     
     var BenThanhLat = 10.772329
     var BenThanhLong = 106.698338
-    var rectangle = GMSPolygon()
     var myPlaces = [iPlace]()
    
     
@@ -38,8 +35,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     
     let listSelectFeatures = ["atm", "gas_station", "store", "park", "hospital"]
     
-    
-    
     func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
         //image.draw(in: CGRectMake(0, 0, newSize.width, newSize.height))
@@ -54,7 +49,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         resultsViewController = GMSAutocompleteResultsViewController()
-        resultsViewController?.delegate = self as! GMSAutocompleteResultsViewControllerDelegate
+        resultsViewController?.delegate = self as GMSAutocompleteResultsViewControllerDelegate
         
         searchController = UISearchController(searchResultsController: resultsViewController)
         searchController?.searchResultsUpdater = resultsViewController
@@ -70,8 +65,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         // Prevent the navigation bar from being hidden when searching.
         searchController?.hidesNavigationBarDuringPresentation = false
 
-
-
         initFeaturePicker()
         
         locationManager.delegate = self
@@ -84,13 +77,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
   
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        showCurrentLocationOnMap()
+        let location = locations.last as! CLLocation
+        showCurrentLocationOnMap(location: location)
     
         locationManager.stopUpdatingLocation()
-        
     }
-    
-    
     
     func initFeaturePicker() {
         let toolbar = UIToolbar()
@@ -113,10 +104,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         featurePickerTxt.resignFirstResponder()
     }
     
-    func showCurrentLocationOnMap() {
-        
-        let camera = GMSCameraPosition.camera(withLatitude: BenThanhLat, longitude: BenThanhLong, zoom: 18)
-        let mapView = GMSMapView.map(withFrame: CGRect.init(x: 10.772329, y: 106.698338, width: self.mapView.frame.size.width, height: self.mapView.frame.size.height), camera: camera)
+    func showCurrentLocationOnMap(location: CLLocation) {
+        let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: 18)
+        let mapView = GMSMapView.map(withFrame: CGRect.init(x: 0, y: 0, width: self.mapView.frame.size.width, height: self.mapView.frame.size.height), camera: camera)
         self.mapView.addSubview(mapView)
         
         mapView.settings.myLocationButton = true
@@ -125,10 +115,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         let marker = GMSMarker()
         marker.position = camera.target
         marker.snippet = "Current Location"
-        marker.title = "asdasd"
         marker.appearAnimation = GMSMarkerAnimation.pop
-        marker.icon = GMSMarker.markerImage(with: .black);
+        marker.icon = GMSMarker.markerImage(with: .blue);
         marker.map = mapView
+        
+        PlaceFinder.getPlaces(lat: location.coordinate.latitude, lng: location.coordinate.longitude, type: "atm", range: 5000)
         
         
         

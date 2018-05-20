@@ -10,7 +10,6 @@
 		0C558332209378290086EABE /* PlaceJSonFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C558331209378280086EABE /* PlaceJSonFile.swift */; };
 		0C558334209378710086EABE /* DirectJSonFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C558333209378710086EABE /* DirectJSonFile.swift */; };
 		0CCB2C5420925F68006FFAD0 /* atm.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CCB2C5320925F68006FFAD0 /* atm.png */; };
-		0FADE5E726B77456BC0A06AB /* libPods-MapFinding.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9E29FB6FDFB2DB845A61B97 /* libPods-MapFinding.a */; };
 		1D4D265320822CFC0033F793 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4D265220822CFC0033F793 /* AppDelegate.swift */; };
 		1D4D265520822CFC0033F793 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4D265420822CFC0033F793 /* ViewController.swift */; };
 		1D4D265820822CFC0033F793 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D4D265620822CFC0033F793 /* Main.storyboard */; };
@@ -18,10 +17,14 @@
 		1D4D265D20822CFC0033F793 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D4D265B20822CFC0033F793 /* LaunchScreen.storyboard */; };
 		1D4D266520822D0A0033F793 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 1D4D266420822D0A0033F793 /* Podfile */; };
 		1D62DF2A20823DE7003125D9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D62DF2920823DE7003125D9 /* CoreLocation.framework */; };
+		1DD23F3D20B190FF001BEF22 /* PlaceFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD23F3C20B190FF001BEF22 /* PlaceFinder.swift */; };
+		1DD23F4020B192FC001BEF22 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD23F3F20B192FC001BEF22 /* Place.swift */; };
+		1DD23F4220B193F3001BEF22 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD23F4120B193F3001BEF22 /* Geometry.swift */; };
+		36B13DF851A3EB5C2FC6348E /* Pods_MapFinding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F886F27815CC0523E850981 /* Pods_MapFinding.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0C558331209378280086EABE /* PlaceJSonFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceJSonFile.swift; sourceTree = SOURCE_ROOT; };
+		0C558331209378280086EABE /* PlaceJSonFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaceJSonFile.swift; path = MapFinding/Models/PlaceJSonFile.swift; sourceTree = SOURCE_ROOT; };
 		0C558333209378710086EABE /* DirectJSonFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectJSonFile.swift; sourceTree = "<group>"; };
 		0CCB2C5320925F68006FFAD0 /* atm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atm.png; sourceTree = "<group>"; };
 		1D4D264F20822CFC0033F793 /* MapFinding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapFinding.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -33,8 +36,13 @@
 		1D4D265E20822CFC0033F793 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D4D266420822D0A0033F793 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		1D62DF2920823DE7003125D9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		1DD23F3320B1629D001BEF22 /* libGooglePlacesPicker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libGooglePlacesPicker.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DD23F3520B16388001BEF22 /* libGooglePlacesPicker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libGooglePlacesPicker.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DD23F3C20B190FF001BEF22 /* PlaceFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceFinder.swift; sourceTree = "<group>"; };
+		1DD23F3F20B192FC001BEF22 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		1DD23F4120B193F3001BEF22 /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		24405DD1460984F9DBC01C54 /* Pods-MapFinding.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapFinding.release.xcconfig"; path = "Pods/Target Support Files/Pods-MapFinding/Pods-MapFinding.release.xcconfig"; sourceTree = "<group>"; };
-		A9E29FB6FDFB2DB845A61B97 /* libPods-MapFinding.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MapFinding.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F886F27815CC0523E850981 /* Pods_MapFinding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapFinding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF3FCA403174C49A7A52C0DC /* Pods-MapFinding.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapFinding.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MapFinding/Pods-MapFinding.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -44,7 +52,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D62DF2A20823DE7003125D9 /* CoreLocation.framework in Frameworks */,
-				0FADE5E726B77456BC0A06AB /* libPods-MapFinding.a in Frameworks */,
+				36B13DF851A3EB5C2FC6348E /* Pods_MapFinding.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,8 +81,8 @@
 		1D4D265120822CFC0033F793 /* MapFinding */ = {
 			isa = PBXGroup;
 			children = (
-				0C558331209378280086EABE /* PlaceJSonFile.swift */,
-				0C558333209378710086EABE /* DirectJSonFile.swift */,
+				1DD23F3E20B1928A001BEF22 /* Models */,
+				1DD23F3B20B190B5001BEF22 /* Actions */,
 				0CCB2C5320925F68006FFAD0 /* atm.png */,
 				1D4D265220822CFC0033F793 /* AppDelegate.swift */,
 				1D4D265420822CFC0033F793 /* ViewController.swift */,
@@ -86,11 +94,32 @@
 			path = MapFinding;
 			sourceTree = "<group>";
 		};
+		1DD23F3B20B190B5001BEF22 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				1DD23F3C20B190FF001BEF22 /* PlaceFinder.swift */,
+			);
+			path = Actions;
+			sourceTree = "<group>";
+		};
+		1DD23F3E20B1928A001BEF22 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0C558331209378280086EABE /* PlaceJSonFile.swift */,
+				0C558333209378710086EABE /* DirectJSonFile.swift */,
+				1DD23F3F20B192FC001BEF22 /* Place.swift */,
+				1DD23F4120B193F3001BEF22 /* Geometry.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		82D5350ED3CC2987473F0B02 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1DD23F3520B16388001BEF22 /* libGooglePlacesPicker.a */,
+				1DD23F3320B1629D001BEF22 /* libGooglePlacesPicker.a */,
 				1D62DF2920823DE7003125D9 /* CoreLocation.framework */,
-				A9E29FB6FDFB2DB845A61B97 /* libPods-MapFinding.a */,
+				6F886F27815CC0523E850981 /* Pods_MapFinding.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -116,6 +145,7 @@
 				1D4D264C20822CFC0033F793 /* Frameworks */,
 				1D4D264D20822CFC0033F793 /* Resources */,
 				88F2BB363AB543FF56440ACD /* [CP] Copy Pods Resources */,
+				120954FC9B68CC4AE4214A45 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -175,6 +205,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		120954FC9B68CC4AE4214A45 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MapFinding/Pods-MapFinding-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapFinding/Pods-MapFinding-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5E34FAFD7D2FE7E55FEC76F7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -201,11 +251,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MapFinding/Pods-MapFinding-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
 				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlacePicker.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,8 +273,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C558334209378710086EABE /* DirectJSonFile.swift in Sources */,
+				1DD23F4220B193F3001BEF22 /* Geometry.swift in Sources */,
 				1D4D265520822CFC0033F793 /* ViewController.swift in Sources */,
 				1D4D265320822CFC0033F793 /* AppDelegate.swift in Sources */,
+				1DD23F4020B192FC001BEF22 /* Place.swift in Sources */,
+				1DD23F3D20B190FF001BEF22 /* PlaceFinder.swift in Sources */,
 				0C558332209378290086EABE /* PlaceJSonFile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,12 +424,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = F8SL983M9N;
 				INFOPLIST_FILE = MapFinding/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = vn.edu.hcmus.MapFinding;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -388,12 +440,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = F8SL983M9N;
 				INFOPLIST_FILE = MapFinding/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = vn.edu.hcmus.MapFinding;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
