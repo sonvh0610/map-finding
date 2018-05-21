@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C01F79C20B339800061D0B2 /* configureMAP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C01F79B20B339800061D0B2 /* configureMAP.swift */; };
 		0C558332209378290086EABE /* PlaceJSonFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C558331209378280086EABE /* PlaceJSonFile.swift */; };
 		0C558334209378710086EABE /* DirectJSonFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C558333209378710086EABE /* DirectJSonFile.swift */; };
 		0CCB2C5420925F68006FFAD0 /* atm.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CCB2C5320925F68006FFAD0 /* atm.png */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C01F79B20B339800061D0B2 /* configureMAP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = configureMAP.swift; sourceTree = "<group>"; };
 		0C558331209378280086EABE /* PlaceJSonFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaceJSonFile.swift; path = MapFinding/Models/PlaceJSonFile.swift; sourceTree = SOURCE_ROOT; };
 		0C558333209378710086EABE /* DirectJSonFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectJSonFile.swift; sourceTree = "<group>"; };
 		0CCB2C5320925F68006FFAD0 /* atm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atm.png; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				1DD23F3C20B190FF001BEF22 /* PlaceFinder.swift */,
+				0C01F79B20B339800061D0B2 /* configureMAP.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				1D4D265520822CFC0033F793 /* ViewController.swift in Sources */,
 				1D4D265320822CFC0033F793 /* AppDelegate.swift in Sources */,
 				1DD23F4020B192FC001BEF22 /* Place.swift in Sources */,
+				0C01F79C20B339800061D0B2 /* configureMAP.swift in Sources */,
 				1DD23F3D20B190FF001BEF22 /* PlaceFinder.swift in Sources */,
 				0C558332209378290086EABE /* PlaceJSonFile.swift in Sources */,
 			);
@@ -426,7 +430,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F8SL983M9N;
 				INFOPLIST_FILE = MapFinding/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = vn.edu.hcmus.MapFinding;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -442,7 +449,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F8SL983M9N;
 				INFOPLIST_FILE = MapFinding/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = vn.edu.hcmus.MapFinding;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

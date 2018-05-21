@@ -17,6 +17,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     
     var BenThanhLat = 10.772329
     var BenThanhLong = 106.698338
+   
+    
     var myPlaces = [iPlace]()
    
     
@@ -112,125 +114,40 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         mapView.settings.myLocationButton = true
         mapView.isMyLocationEnabled = true
       
+        
         let marker = GMSMarker()
         marker.position = camera.target
         marker.snippet = "Current Location"
         marker.appearAnimation = GMSMarkerAnimation.pop
         marker.icon = GMSMarker.markerImage(with: .blue);
         marker.map = mapView
-        
-        PlaceFinder.getPlaces(lat: location.coordinate.latitude, lng: location.coordinate.longitude, type: "atm", range: 5000)
-        
-        
-        
-//        getLocationByType(type: "restaurant") { myATM in
-//            for eachResult in myATM.results{
-//                DispatchQueue.main.async {
-//                    var newMarker = GMSMarker()
-//                    newMarker = self.findByID(placeID: eachResult.place_id)
-//                    newMarker.map = mapView
-//                }
-//            }
-//        }
-//
-//        getDirection() { myDirection in
-//            for route in myDirection.routes {
-//                DispatchQueue.main.async {
-//                    let points = route.overview_polyline.points
-//                    let path = GMSPath.init(fromEncodedPath:points)
-//                    let polyline = GMSPolyline.init(path:path)
-//                    polyline.strokeWidth = 4
-//                    polyline.strokeColor = UIColor.red
-//                    polyline.map = mapView
-//                }
-//            }
-//
-//        }
-        
-    
     
         
+        PlaceFinder.getPlaces(lat: location.coordinate.latitude, lng: location.coordinate.longitude, type: "atm", range: 5000).done
+            { atm  in
+                for each in atm {
+                    var newMarker = GMSMarker()
+                    newMarker = configureMAP().drawPlaceByType(place: each, name: " ")
+                    newMarker.map = mapView
+                }
+        }
         
+        configureMAP().getDirection(lat: location.coordinate.latitude, lng: location.coordinate.longitude, APIKey: APIKey) { myDirection in
+            for route in myDirection.routes {
+                DispatchQueue.main.async {
+                    let points = route.overview_polyline.points
+                    let path = GMSPath.init(fromEncodedPath:points)
+                    let polyline = GMSPolyline.init(path:path)
+                    polyline.strokeWidth = 4
+                    polyline.strokeColor = UIColor.red
+                    polyline.map = mapView
+                }
+            }
+        }
     }
     
-    
-    func getLocationByType (type:String, completion: @escaping (myJSONFile) -> () ) {
-        guard let url = URL(string: "https://maps.googleapis.com/maps/api/place/radarsearch/json?location=\(BenThanhLat)%2C\(BenThanhLong)&radius=5000&type=\(type)&key=AIzaSyARC_KcLUdCs9ZEU3i5LTPPTdoFzi_BIcI") else { return}
-        URLSession.shared.dataTask(with: url) { (data,response,error) in
-            guard let data = data else {return}
-            print(data)
-            do {
-                let place = try JSONDecoder().decode(myJSONFile.self,from:data)
-                completion(place);
-            }
-            catch {
-                print("Error query place")
-            }
-            }.resume()
-    }
+ 
 
-    
-   
-    
-    func getDirection (completion : @escaping  ( DirectStruct) -> () ) {
-        guard let url = URL(string: "https://maps.googleapis.com/maps/api/directions/json?origin=Ben+Thanh+Viet+Nam&destination=Dai+Hoc+Khoa+hoc+Tu+Nhien4&key=AIzaSyCodndO4xHHgof1F3omVMpxJ_kNy1-8x18") else { return}
-        URLSession.shared.dataTask(with: url) { (data,response,error) in
-            guard let data = data else {return}
-            print(data)
-            do {
-                let direct = try JSONDecoder().decode(DirectStruct.self,from:data)
-                completion(direct);
-            }
-            catch {
-                print("Error query place")
-            }
-            }.resume()
-    
-    }
-    
-    
-    
-    
-    
-    func findByID (placeID:String) ->GMSMarker {
-        let placeMarker = GMSMarker()
-        let placesClient = GMSPlacesClient()
-        placesClient.lookUpPlaceID(placeID,callback: { (place, error) in
-            if let error = error {
-                print ("lookup error: \(error.localizedDescription)")
-                return
-            }
-            guard let place = place else {
-                print( "No details ")
-                return
-            }
-            print ("Place name \(place.name)")
-            print ("Place address \(place.formattedAddress)")
-            print (place.coordinate)
-            placeMarker.title = place.name
-            placeMarker.snippet = place.formattedAddress
-            placeMarker.position.latitude = place.coordinate.latitude
-            placeMarker.position.longitude = place.coordinate.longitude
-            placeMarker.icon = GMSMarker.markerImage(with: .blue)
-            
-        })
-        return placeMarker
-    }
-    
-    
-    
-        // CircleK Ben thanh 10.774383 - 106.696235
-    
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -264,20 +181,22 @@ extension ViewController: GMSAutocompleteResultsViewControllerDelegate {
         print("Place name: \(place.name)")
         print("Place address: \(String(describing: place.formattedAddress))")
         print("Place attributions: \(String(describing: place.placeID))")
+//
+//        let camera = GMSCameraPosition.camera(withLatitude: place.coordinate.latitude  , longitude: place.coordinate.longitude, zoom: 18)
         
-        let camera = GMSCameraPosition.camera(withLatitude: place.coordinate.latitude  , longitude: place.coordinate.longitude, zoom: 18)
-        let mapView = GMSMapView.map(withFrame: CGRect.init(x: 10.772329, y: 106.698338, width: self.mapView.frame.size.width, height: self.mapView.frame.size.height), camera: camera)
-        self.mapView.addSubview(mapView)
-        
-        
-        let marker = GMSMarker()
-        marker.position = camera.target
-        marker.snippet = String(place.formattedAddress!)
-        marker.title = String(place.name)
-        marker.appearAnimation = GMSMarkerAnimation.pop
-        marker.icon = GMSMarker.markerImage(with: .red);
-        marker.map = mapView
+//        let mapView = GMSMapView.map(withFrame: CGRect.init(x: 0, y: 0, width: self.mapView.frame.size.width, height: self.mapView.frame.size.height), camera: camera)
+//        self.mapView.addSubview(mapView)
+//
+//
+//        let marker = GMSMarker()
+//        marker.position = camera.target
+//        marker.snippet = String(place.formattedAddress!)
+//        marker.title = String(place.name)
+//        marker.appearAnimation = GMSMarkerAnimation.pop
+//        marker.icon = GMSMarker.markerImage(with: .red);
+//        marker.map = self.mapView as? GMSMapView
     }
+    
     
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                            didFailAutocompleteWithError error: Error){
