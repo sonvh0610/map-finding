@@ -8,6 +8,17 @@
 
 import Foundation
 
+
+struct opening_hours: Decodable {
+    let open_now: Bool
+
+    
+    init(dict: [String: Any]) {
+        self.open_now = dict["open_now"] as? Bool ?? false
+       
+    }
+}
+
 struct Place: Decodable {
     let Id: String
     let PlaceId: String
@@ -16,6 +27,7 @@ struct Place: Decodable {
     let Types: [String]
     let Vicinity: String
     let Geometry: GeometryLocation
+    let Open: opening_hours
     
     init(dict: [String: Any]) {
         self.Id = dict["id"] as? String ?? ""
@@ -25,5 +37,6 @@ struct Place: Decodable {
         self.Types = dict["types"] as? [String] ?? []
         self.Vicinity = dict["vicinity"] as? String ?? ""
         self.Geometry = GeometryLocation(dict: dict["geometry"] as? [String: Any] ?? [:])
+        self.Open = opening_hours(dict: dict["opening_hours"] as? [String: Any] ?? [:])
     }
 }

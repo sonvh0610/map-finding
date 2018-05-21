@@ -34,8 +34,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     
     let featurePicker = UIPickerView()
     let locationManager = CLLocationManager()
-    
-    let listSelectFeatures = ["atm", "gas_station", "store", "park", "hospital"]
+
+    let listSelectFeatures = ["atm", "gas_station", "park", "hospital","police","cafe"]
     
     func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
@@ -73,7 +73,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-    
+       
     }
     
   
@@ -129,10 +129,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
                     var newMarker = GMSMarker()
                     newMarker = configureMAP().drawPlaceByType(place: each, name: " ")
                     newMarker.map = mapView
+                    
                 }
         }
         
-        configureMAP().getDirection(lat: location.coordinate.latitude, lng: location.coordinate.longitude, APIKey: APIKey) { myDirection in
+        
+        // Lay dia chi tu autocomplete search  ??
+        let str = "Facebook Way, Menlo Park, CA 94025, USA"
+        let temp = str.replacingOccurrences(of: " ", with: "+")
+        let Address = temp.replacingOccurrences(of: ",", with: "")
+        configureMAP().getDirection(lat: location.coordinate.latitude, lng: location.coordinate.longitude,Address: Address, APIKey: APIKey) { myDirection in
             for route in myDirection.routes {
                 DispatchQueue.main.async {
                     let points = route.overview_polyline.points
@@ -144,6 +150,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
                 }
             }
         }
+        
+        
     }
     
  
@@ -164,11 +172,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return listSelectFeatures[row]
+        return NSLocalizedString(listSelectFeatures[row], comment: "")
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        featurePickerTxt.text = listSelectFeatures[row]
+        featurePickerTxt.text =  NSLocalizedString(listSelectFeatures[row], comment: "")
+       
     }
 }
 
@@ -177,10 +186,11 @@ extension ViewController: GMSAutocompleteResultsViewControllerDelegate {
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                            didAutocompleteWith place: GMSPlace) {
         searchController?.isActive = false
-        // Do something with the selected place.
+        
         print("Place name: \(place.name)")
         print("Place address: \(String(describing: place.formattedAddress))")
         print("Place attributions: \(String(describing: place.placeID))")
+  
 //
 //        let camera = GMSCameraPosition.camera(withLatitude: place.coordinate.latitude  , longitude: place.coordinate.longitude, zoom: 18)
         

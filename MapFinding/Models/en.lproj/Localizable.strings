@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  MapFinding
+
+  Created by user137983 on 5/21/18.
+  Copyright © 2018 University of Science. All rights reserved.
+*/
+
+
+"gas_station" = "Gas Station";
+"hospital" = "Hospital";
+"police" = "Police Station";
+"cafe" = "Coffee Shop";
+"park" = "Park";
+"Tình trạng: " = "Status: ";
+"Đang hoạt động" = "Opening";
+"Đã Đóng" = "Closed";
