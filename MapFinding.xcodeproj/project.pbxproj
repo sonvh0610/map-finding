@@ -16,6 +16,7 @@
 		0C558332209378290086EABE /* PlaceJSonFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C558331209378280086EABE /* PlaceJSonFile.swift */; };
 		0C558334209378710086EABE /* DirectJSonFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C558333209378710086EABE /* DirectJSonFile.swift */; };
 		0CCB2C5420925F68006FFAD0 /* atm.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CCB2C5320925F68006FFAD0 /* atm.png */; };
+		0CF6626820B4781100AE0DC1 /* directions.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF6626720B4781100AE0DC1 /* directions.png */; };
 		1D4D265320822CFC0033F793 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4D265220822CFC0033F793 /* AppDelegate.swift */; };
 		1D4D265520822CFC0033F793 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4D265420822CFC0033F793 /* ViewController.swift */; };
 		1D4D265820822CFC0033F793 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D4D265620822CFC0033F793 /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 		0C558331209378280086EABE /* PlaceJSonFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaceJSonFile.swift; path = MapFinding/Models/PlaceJSonFile.swift; sourceTree = SOURCE_ROOT; };
 		0C558333209378710086EABE /* DirectJSonFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectJSonFile.swift; sourceTree = "<group>"; };
 		0CCB2C5320925F68006FFAD0 /* atm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atm.png; sourceTree = "<group>"; };
+		0CF6626720B4781100AE0DC1 /* directions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = directions.png; sourceTree = "<group>"; };
 		1D4D264F20822CFC0033F793 /* MapFinding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapFinding.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D4D265220822CFC0033F793 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D4D265420822CFC0033F793 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 		0C01F7A520B4090D0061D0B2 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				0CF6626720B4781100AE0DC1 /* directions.png */,
 				0C01F7AE20B40ABD0061D0B2 /* police.png */,
 				0C01F7B220B40ADC0061D0B2 /* cafe.png */,
 				0C01F7B420B40AE10061D0B2 /* gas_station.png */,
@@ -228,6 +231,7 @@
 				0C01F7AF20B40ABD0061D0B2 /* police.png in Resources */,
 				0C01F7B320B40ADC0061D0B2 /* cafe.png in Resources */,
 				0C01F7A120B366390061D0B2 /* Localizable.strings in Resources */,
+				0CF6626820B4781100AE0DC1 /* directions.png in Resources */,
 				0C01F7B120B40AD00061D0B2 /* hospital.png in Resources */,
 				1D4D265D20822CFC0033F793 /* LaunchScreen.storyboard in Resources */,
 				1D4D265A20822CFC0033F793 /* Assets.xcassets in Resources */,

@@ -40,10 +40,10 @@ class configureMAP: UIViewController {
         placeMarker.snippet = place.Vicinity + "\n" +   NSLocalizedString(open, comment: "")
         placeMarker.position.latitude = place.Geometry.Location.Latitude
         placeMarker.position.longitude = place.Geometry.Location.Longitude
-  
+        placeMarker.appearAnimation = GMSMarkerAnimation.pop
         placeMarker.icon = imageWithImage(image: UIImage(named: type + ".png")!, scaledToSize: CGSize(width: 40.0, height: 40.0))
         //        placeMarker.icon = GMSMarker.markerImage(with: .black)
-
+        placeMarker.userData = place.Vicinity
     }
     return placeMarker
     }
