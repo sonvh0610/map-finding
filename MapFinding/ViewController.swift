@@ -253,10 +253,11 @@ extension ViewController: GMSMapViewDelegate {
 
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        print(marker.userData as! String )
+    
+        guard let data = marker.userData as? String else { return false}
         self.directionButton.isHidden = false
         self.mapView.addSubview(directionButton)
-        let parseData = (marker.userData as! String).components(separatedBy: "+")
+        let parseData = data.components(separatedBy: "+")
         self.Address = parseData[0]
         self.placeID = parseData[1]
         print(self.Address)
