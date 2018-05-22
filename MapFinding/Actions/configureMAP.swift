@@ -43,8 +43,9 @@ class configureMAP: UIViewController {
         placeMarker.appearAnimation = GMSMarkerAnimation.pop
         placeMarker.icon = imageWithImage(image: UIImage(named: type + ".png")!, scaledToSize: CGSize(width: 40.0, height: 40.0))
         //        placeMarker.icon = GMSMarker.markerImage(with: .black)
-        placeMarker.userData = place.Vicinity
-    }
+        placeMarker.userData = place.Vicinity + "+" + place.PlaceId
+        
+        }
     return placeMarker
     }
     
@@ -64,6 +65,34 @@ class configureMAP: UIViewController {
                 print("Error query place")
             }
             }.resume()
+        
+    }
+    
+    func drawPlaceByPlaceID (placeID:String) -> GMSMarker{
+        let placeMarker = GMSMarker()
+        let placesClient = GMSPlacesClient()
+    
+            placesClient.lookUpPlaceID(placeID,callback: { (place, error) in
+                if let error = error {
+                    print ("lookup error: \(error.localizedDescription)")
+                    return
+                }
+                guard let place = place else {
+                    print( "No details ")
+                    return
+                }
+                print ("Place name \(place.name)")
+                print ("Place address \(place.formattedAddress)")
+                print (place.coordinate)
+                placeMarker.title = place.name
+                placeMarker.snippet = place.formattedAddress
+                placeMarker.position.latitude = place.coordinate.latitude
+                placeMarker.position.longitude = place.coordinate.longitude
+                placeMarker.appearAnimation = GMSMarkerAnimation.pop
+                placeMarker.icon = GMSMarker.markerImage(with: .red)
+            
+            })
+        return placeMarker
         
     }
     

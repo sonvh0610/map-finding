@@ -132,9 +132,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     
  
     var Address:String = ""
+    var placeID:String = ""
     @IBAction func actionDirectionButton(_ sender: Any)
     {
         self.GoogleMap?.clear()
+        
+        
+        DispatchQueue.main.async {
+            let id = self.placeID
+            var newMarker = GMSMarker()
+            newMarker = configureMAP().drawPlaceByPlaceID(placeID: id)
+            newMarker.map = self.GoogleMap
+        }
+        
+        
         let temp = self.Address.replacingOccurrences(of: " ", with: "+")
         let Address = temp.replacingOccurrences(of: ",", with: "")
             configureMAP().getDirection(lat: currentLat, lng: currentLong,Address: Address, APIKey: APIKey)
@@ -152,7 +163,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
                     polyline.strokeColor = UIColor.red
                     polyline.isTappable = true
                     polyline.map = self.GoogleMap
-                  
                     }
             }
         }
@@ -175,6 +185,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return NSLocalizedString(listSelectFeatures[row], comment: "")
     }
+
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
@@ -187,6 +198,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
                     newMarker.map = self.GoogleMap
 
             }
+                
         }
         
  
@@ -244,13 +256,27 @@ extension ViewController: GMSMapViewDelegate {
         print(marker.userData as! String )
         self.directionButton.isHidden = false
         self.mapView.addSubview(directionButton)
-        self.Address = marker.userData as! String
+        let parseData = (marker.userData as! String).components(separatedBy: "+")
+        self.Address = parseData[0]
+        self.placeID = parseData[1]
+        print(self.Address)
+        print(self.placeID)
+        
         return false
     }
     
  
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         self.directionButton.isHidden = true
+    }
+    
+    
+    func mapView(_ mapView: GMSMapView, didTapMyLocation location: CLLocationCoordinate2D) {
+        self.currentLong = location.longitude
+        self.currentLat = location.latitude
+    }
+    func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
+        return false
     }
 }
 

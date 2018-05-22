@@ -40,3 +40,5 @@ struct Place: Decodable {
         self.Open = opening_hours(dict: dict["opening_hours"] as? [String: Any] ?? [:])
     }
 }
+
+
