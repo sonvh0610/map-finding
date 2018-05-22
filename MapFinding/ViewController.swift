@@ -200,7 +200,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
             }
                 
         }
-        
+        self.directionButton.isHidden = true
  
     }
 }
