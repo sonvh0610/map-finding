@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		0C01F79C20B339800061D0B2 /* configureMAP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C01F79B20B339800061D0B2 /* configureMAP.swift */; };
 		0C01F7A120B366390061D0B2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C01F7A320B366390061D0B2 /* Localizable.strings */; };
+		0C01F7AF20B40ABD0061D0B2 /* police.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C01F7AE20B40ABD0061D0B2 /* police.png */; };
+		0C01F7B120B40AD00061D0B2 /* hospital.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C01F7B020B40AD00061D0B2 /* hospital.png */; };
+		0C01F7B320B40ADC0061D0B2 /* cafe.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C01F7B220B40ADC0061D0B2 /* cafe.png */; };
+		0C01F7B520B40AE10061D0B2 /* gas_station.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C01F7B420B40AE10061D0B2 /* gas_station.png */; };
 		0C558332209378290086EABE /* PlaceJSonFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C558331209378280086EABE /* PlaceJSonFile.swift */; };
 		0C558334209378710086EABE /* DirectJSonFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C558333209378710086EABE /* DirectJSonFile.swift */; };
 		0CCB2C5420925F68006FFAD0 /* atm.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CCB2C5320925F68006FFAD0 /* atm.png */; };
@@ -31,6 +35,10 @@
 		0C01F79E20B365C70061D0B2 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		0C01F7A220B366390061D0B2 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0C01F7A420B3663B0061D0B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0C01F7AE20B40ABD0061D0B2 /* police.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = police.png; sourceTree = "<group>"; };
+		0C01F7B020B40AD00061D0B2 /* hospital.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hospital.png; sourceTree = "<group>"; };
+		0C01F7B220B40ADC0061D0B2 /* cafe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cafe.png; sourceTree = "<group>"; };
+		0C01F7B420B40AE10061D0B2 /* gas_station.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gas_station.png; sourceTree = "<group>"; };
 		0C558331209378280086EABE /* PlaceJSonFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaceJSonFile.swift; path = MapFinding/Models/PlaceJSonFile.swift; sourceTree = SOURCE_ROOT; };
 		0C558333209378710086EABE /* DirectJSonFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectJSonFile.swift; sourceTree = "<group>"; };
 		0CCB2C5320925F68006FFAD0 /* atm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atm.png; sourceTree = "<group>"; };
@@ -66,6 +74,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C01F7A520B4090D0061D0B2 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				0C01F7AE20B40ABD0061D0B2 /* police.png */,
+				0C01F7B220B40ADC0061D0B2 /* cafe.png */,
+				0C01F7B420B40AE10061D0B2 /* gas_station.png */,
+				0C01F7B020B40AD00061D0B2 /* hospital.png */,
+				0CCB2C5320925F68006FFAD0 /* atm.png */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
 		1D4D264620822CFC0033F793 = {
 			isa = PBXGroup;
 			children = (
@@ -88,9 +108,9 @@
 		1D4D265120822CFC0033F793 /* MapFinding */ = {
 			isa = PBXGroup;
 			children = (
+				0C01F7A520B4090D0061D0B2 /* image */,
 				1DD23F3E20B1928A001BEF22 /* Models */,
 				1DD23F3B20B190B5001BEF22 /* Actions */,
-				0CCB2C5320925F68006FFAD0 /* atm.png */,
 				1D4D265220822CFC0033F793 /* AppDelegate.swift */,
 				1D4D265420822CFC0033F793 /* ViewController.swift */,
 				1D4D265620822CFC0033F793 /* Main.storyboard */,
@@ -203,8 +223,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C01F7B520B40AE10061D0B2 /* gas_station.png in Resources */,
 				0CCB2C5420925F68006FFAD0 /* atm.png in Resources */,
+				0C01F7AF20B40ABD0061D0B2 /* police.png in Resources */,
+				0C01F7B320B40ADC0061D0B2 /* cafe.png in Resources */,
 				0C01F7A120B366390061D0B2 /* Localizable.strings in Resources */,
+				0C01F7B120B40AD00061D0B2 /* hospital.png in Resources */,
 				1D4D265D20822CFC0033F793 /* LaunchScreen.storyboard in Resources */,
 				1D4D265A20822CFC0033F793 /* Assets.xcassets in Resources */,
 				1D4D266520822D0A0033F793 /* Podfile in Resources */,

@@ -15,12 +15,12 @@ var APIKey = "AIzaSyCqfMT5I-TaHa0-D7T4JrhCglzXxSALWc0"
 
 class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UISearchBarDelegate {
     
-    var BenThanhLat = 10.772329
-    var BenThanhLong = 106.698338
-   
+
+    var currentLat: Double = 0.0
+    var currentLong: Double = 0.0
     
     var myPlaces = [iPlace]()
-   
+    
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet var mapView: UIView!
@@ -30,12 +30,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
     var resultView: UITextView?
-    
+    var GoogleMap: GMSMapView?
     
     let featurePicker = UIPickerView()
     let locationManager = CLLocationManager()
 
-    let listSelectFeatures = ["atm", "gas_station", "park", "hospital","police","cafe"]
+    let listSelectFeatures = ["atm", "gas_station", "hospital","police","cafe"]
     
     func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
@@ -81,7 +81,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last as! CLLocation
         showCurrentLocationOnMap(location: location)
-    
+        currentLat = location.coordinate.latitude
+        currentLong = location.coordinate.longitude
         locationManager.stopUpdatingLocation()
     }
     
@@ -108,48 +109,42 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     
     func showCurrentLocationOnMap(location: CLLocation) {
         let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: 18)
-        let mapView = GMSMapView.map(withFrame: CGRect.init(x: 0, y: 0, width: self.mapView.frame.size.width, height: self.mapView.frame.size.height), camera: camera)
-        self.mapView.addSubview(mapView)
+        GoogleMap = GMSMapView.map(withFrame: CGRect.init(x: 0, y: 0, width: self.mapView.frame.size.width, height: self.mapView.frame.size.height), camera: camera)
+        self.mapView.addSubview(GoogleMap!)
         
-        mapView.settings.myLocationButton = true
-        mapView.isMyLocationEnabled = true
-      
+        GoogleMap?.settings.myLocationButton = true
+        GoogleMap?.isMyLocationEnabled = true
+    
+ 
         
         let marker = GMSMarker()
         marker.position = camera.target
         marker.snippet = "Current Location"
         marker.appearAnimation = GMSMarkerAnimation.pop
         marker.icon = GMSMarker.markerImage(with: .blue);
-        marker.map = mapView
-    
+        marker.map = GoogleMap
         
-        PlaceFinder.getPlaces(lat: location.coordinate.latitude, lng: location.coordinate.longitude, type: "atm", range: 5000).done
-            { atm  in
-                for each in atm {
-                    var newMarker = GMSMarker()
-                    newMarker = configureMAP().drawPlaceByType(place: each, name: " ")
-                    newMarker.map = mapView
-                    
-                }
-        }
+        
+        
+      
         
         
         // Lay dia chi tu autocomplete search  ??
-        let str = "Facebook Way, Menlo Park, CA 94025, USA"
-        let temp = str.replacingOccurrences(of: " ", with: "+")
-        let Address = temp.replacingOccurrences(of: ",", with: "")
-        configureMAP().getDirection(lat: location.coordinate.latitude, lng: location.coordinate.longitude,Address: Address, APIKey: APIKey) { myDirection in
-            for route in myDirection.routes {
-                DispatchQueue.main.async {
-                    let points = route.overview_polyline.points
-                    let path = GMSPath.init(fromEncodedPath:points)
-                    let polyline = GMSPolyline.init(path:path)
-                    polyline.strokeWidth = 4
-                    polyline.strokeColor = UIColor.red
-                    polyline.map = mapView
-                }
-            }
-        }
+//        let str = "Facebook Way, Menlo Park, CA 94025, USA"
+//        let temp = str.replacingOccurrences(of: " ", with: "+")
+//        let Address = temp.replacingOccurrences(of: ",", with: "")
+//        configureMAP().getDirection(lat: location.coordinate.latitude, lng: location.coordinate.longitude,Address: Address, APIKey: APIKey) { myDirection in
+//            for route in myDirection.routes {
+//                DispatchQueue.main.async {
+//                    let points = route.overview_polyline.points
+//                    let path = GMSPath.init(fromEncodedPath:points)
+//                    let polyline = GMSPolyline.init(path:path)
+//                    polyline.strokeWidth = 4
+//                    polyline.strokeColor = UIColor.red
+//                    polyline.map = mapView
+//                }
+//            }
+//        }
         
         
     }
@@ -176,8 +171,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        featurePickerTxt.text =  NSLocalizedString(listSelectFeatures[row], comment: "")
-       
+//        featurePickerTxt.text =  NSLocalizedString(listSelectFeatures[row], comment: "")
+        
+        self.GoogleMap?.clear()
+        PlaceFinder.getPlaces(lat: currentLat, lng: currentLong, type: listSelectFeatures[row], range: 5000).done
+            { atm  in
+                for each in atm {
+                    var newMarker = GMSMarker()
+                    newMarker = configureMAP().drawPlaceByType(place: each, name: " ", type: self.listSelectFeatures[row]) // truyen type tu view picker
+                    newMarker.map = self.GoogleMap
+
+            }
+        }
+        
+ 
     }
 }
 
@@ -191,20 +198,17 @@ extension ViewController: GMSAutocompleteResultsViewControllerDelegate {
         print("Place address: \(String(describing: place.formattedAddress))")
         print("Place attributions: \(String(describing: place.placeID))")
   
-//
-//        let camera = GMSCameraPosition.camera(withLatitude: place.coordinate.latitude  , longitude: place.coordinate.longitude, zoom: 18)
+        self.GoogleMap?.clear()
+        let camera = GMSCameraPosition.camera(withLatitude: place.coordinate.latitude  , longitude: place.coordinate.longitude, zoom: 18)
+        self.GoogleMap?.camera = camera
         
-//        let mapView = GMSMapView.map(withFrame: CGRect.init(x: 0, y: 0, width: self.mapView.frame.size.width, height: self.mapView.frame.size.height), camera: camera)
-//        self.mapView.addSubview(mapView)
-//
-//
-//        let marker = GMSMarker()
-//        marker.position = camera.target
-//        marker.snippet = String(place.formattedAddress!)
-//        marker.title = String(place.name)
-//        marker.appearAnimation = GMSMarkerAnimation.pop
-//        marker.icon = GMSMarker.markerImage(with: .red);
-//        marker.map = self.mapView as? GMSMapView
+        let marker = GMSMarker()
+        marker.position = camera.target
+        marker.snippet = String(place.formattedAddress!)
+        marker.title = String(place.name)
+        marker.appearAnimation = GMSMarkerAnimation.pop
+        marker.icon = GMSMarker.markerImage(with: .red)
+        marker.map = self.GoogleMap
     }
     
     

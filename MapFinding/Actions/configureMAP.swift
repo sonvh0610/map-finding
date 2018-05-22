@@ -11,9 +11,17 @@ import GoogleMaps
 import GooglePlaces
 import CoreLocation
 
+func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
+    UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+    image.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+    let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+    UIGraphicsEndImageContext()
+    return newImage
+}
+
 class configureMAP: UIViewController {
 
-func drawPlaceByType (place:Place, name:String) ->GMSMarker {
+    func drawPlaceByType (place:Place, name:String, type:String) ->GMSMarker {
     let placeMarker = GMSMarker()
     let placeNameUpper = place.Name.uppercased()
     let nameUpper = name.uppercased()
@@ -32,8 +40,10 @@ func drawPlaceByType (place:Place, name:String) ->GMSMarker {
         placeMarker.snippet = place.Vicinity + "\n" +   NSLocalizedString(open, comment: "")
         placeMarker.position.latitude = place.Geometry.Location.Latitude
         placeMarker.position.longitude = place.Geometry.Location.Longitude
-        placeMarker.icon = GMSMarker.markerImage(with: .black)
-        
+  
+        placeMarker.icon = imageWithImage(image: UIImage(named: type + ".png")!, scaledToSize: CGSize(width: 40.0, height: 40.0))
+        //        placeMarker.icon = GMSMarker.markerImage(with: .black)
+
     }
     return placeMarker
     }
