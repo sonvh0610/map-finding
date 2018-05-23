@@ -148,7 +148,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         
         let temp = self.Address.replacingOccurrences(of: " ", with: "+")
         let Address = temp.replacingOccurrences(of: ",", with: "")
-            configureMAP().getDirection(lat: currentLat, lng: currentLong,Address: Address, APIKey: APIKey)
+        configureMAP().getDirection(lat: (self.GoogleMap?.myLocation?.coordinate.latitude)!, lng: (self.GoogleMap?.myLocation?.coordinate.longitude)!,Address: Address, APIKey: APIKey)
         {
             myDirection in
             var polyline = GMSPolyline()
@@ -272,6 +272,7 @@ extension ViewController: GMSMapViewDelegate {
     }
     
 
+    
     func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
         self.currentLong = (mapView.myLocation?.coordinate.longitude)!
         self.currentLat = (mapView.myLocation?.coordinate.latitude)!
