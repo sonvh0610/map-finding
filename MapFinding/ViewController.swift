@@ -216,7 +216,7 @@ extension ViewController: GMSAutocompleteResultsViewControllerDelegate {
         print("Place attributions: \(String(describing: place.placeID))")
   
         self.GoogleMap?.clear()
-        let camera = GMSCameraPosition.camera(withLatitude: place.coordinate.latitude  , longitude: place.coordinate.longitude, zoom: 18)
+        let camera = GMSCameraPosition.camera(withLatitude: place.coordinate.latitude  , longitude: place.coordinate.longitude, zoom: 15)
       
         self.GoogleMap?.animate(to: camera)
         let marker = GMSMarker()
@@ -260,9 +260,7 @@ extension ViewController: GMSMapViewDelegate {
         let parseData = data.components(separatedBy: "+")
         self.Address = parseData[0]
         self.placeID = parseData[1]
-        print(self.Address)
-        print(self.placeID)
-        
+        mapView.moveCamera(GMSCameraUpdate.zoom(by: 2))
         return false
     }
     
@@ -276,6 +274,7 @@ extension ViewController: GMSMapViewDelegate {
     func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
         self.currentLong = (mapView.myLocation?.coordinate.longitude)!
         self.currentLat = (mapView.myLocation?.coordinate.latitude)!
+        
         return false
     }
 }
