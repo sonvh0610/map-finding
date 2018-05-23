@@ -271,12 +271,10 @@ extension ViewController: GMSMapViewDelegate {
         self.directionButton.isHidden = true
     }
     
-    
-    func mapView(_ mapView: GMSMapView, didTapMyLocation location: CLLocationCoordinate2D) {
-        self.currentLong = location.longitude
-        self.currentLat = location.latitude
-    }
+
     func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
+        self.currentLong = (mapView.myLocation?.coordinate.longitude)!
+        self.currentLat = (mapView.myLocation?.coordinate.latitude)!
         return false
     }
 }
