@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5jl-9T-bVv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5jl-9T-bVv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -42,7 +42,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XtM-0y-MKJ">
-                                <rect key="frame" x="10" y="567" width="60" height="60"/>
+                                <rect key="frame" x="10" y="597" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="PWN-4N-ATZ"/>
                                     <constraint firstAttribute="width" constant="60" id="VG7-be-RaY"/>
@@ -57,7 +57,7 @@
                         <constraints>
                             <constraint firstItem="271-ms-WoZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="LS6-YI-ROJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="271-ms-WoZ" secondAttribute="bottom" constant="-100" id="Tgq-xf-gdI"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="XtM-0y-MKJ" secondAttribute="bottom" constant="40" id="U8K-Ei-d2a"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="XtM-0y-MKJ" secondAttribute="bottom" constant="10" id="U8K-Ei-d2a"/>
                             <constraint firstItem="LOA-7G-wBo" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="X2a-xM-bUb"/>
                             <constraint firstItem="LOA-7G-wBo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ZXg-Dk-bst"/>
                             <constraint firstItem="LOA-7G-wBo" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="c1I-5s-56f"/>

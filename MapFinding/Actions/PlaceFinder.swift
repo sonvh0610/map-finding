@@ -11,10 +11,8 @@ import PromiseKit
 import Alamofire
 
 class PlaceFinder {
-    private static var apiKey = "AIzaSyDuCfwrFgVNq_gbYVuMxFMj2Omqp12NYf0"
-    
     static public func getPlaces(lat: Double, lng: Double, type: String, range: Int) -> Promise<[Place]> {
-        let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(lat),\(lng)&radius=\(range)&type=\(type)&key=\(apiKey)"
+        let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(lat),\(lng)&radius=\(range)&type=\(type)&key=\(Constants.GOOGLE_API_KEY)"
         
         return Promise<[Place]> { seal -> Void in
             Alamofire.request(url)

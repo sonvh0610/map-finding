@@ -16,6 +16,14 @@
 		0C558334209378710086EABE /* DirectJSonFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C558333209378710086EABE /* DirectJSonFile.swift */; };
 		0CAEEE1D20B540130079F9F8 /* directions.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CAEEE1C20B540120079F9F8 /* directions.png */; };
 		0CCB2C5420925F68006FFAD0 /* atm.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CCB2C5320925F68006FFAD0 /* atm.png */; };
+		1D1A310F20D3A0E3008BC0FF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1A310E20D3A0E3008BC0FF /* Constants.swift */; };
+		1D1A311220D3AC62008BC0FF /* GoogleMaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1A311120D3AC62008BC0FF /* GoogleMaps.swift */; };
+		1D387D3520D4EDF300020818 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D387D3420D4EDF300020818 /* Category.swift */; };
+		1D387D3A20D4F8C300020818 /* AutocompleteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D387D3920D4F8C300020818 /* AutocompleteDelegate.swift */; };
+		1D40B6C020D6048400C8F9E8 /* MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D40B6BF20D6048400C8F9E8 /* MapViewDelegate.swift */; };
+		1D40B6C320D6676D00C8F9E8 /* PlaceReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D40B6C220D6676D00C8F9E8 /* PlaceReducer.swift */; };
+		1D40B6C520D6684100C8F9E8 /* PlaceAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D40B6C420D6684100C8F9E8 /* PlaceAction.swift */; };
+		1D40B6C820D668B900C8F9E8 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D40B6C720D668B900C8F9E8 /* AppState.swift */; };
 		1D4D265320822CFC0033F793 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4D265220822CFC0033F793 /* AppDelegate.swift */; };
 		1D4D265520822CFC0033F793 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4D265420822CFC0033F793 /* ViewController.swift */; };
 		1D4D265820822CFC0033F793 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D4D265620822CFC0033F793 /* Main.storyboard */; };
@@ -42,6 +50,14 @@
 		0C558333209378710086EABE /* DirectJSonFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectJSonFile.swift; sourceTree = "<group>"; };
 		0CAEEE1C20B540120079F9F8 /* directions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = directions.png; sourceTree = "<group>"; };
 		0CCB2C5320925F68006FFAD0 /* atm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atm.png; sourceTree = "<group>"; };
+		1D1A310E20D3A0E3008BC0FF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		1D1A311120D3AC62008BC0FF /* GoogleMaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMaps.swift; sourceTree = "<group>"; };
+		1D387D3420D4EDF300020818 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		1D387D3920D4F8C300020818 /* AutocompleteDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteDelegate.swift; sourceTree = "<group>"; };
+		1D40B6BF20D6048400C8F9E8 /* MapViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
+		1D40B6C220D6676D00C8F9E8 /* PlaceReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceReducer.swift; sourceTree = "<group>"; };
+		1D40B6C420D6684100C8F9E8 /* PlaceAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAction.swift; sourceTree = "<group>"; };
+		1D40B6C720D668B900C8F9E8 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		1D4D264F20822CFC0033F793 /* MapFinding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapFinding.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D4D265220822CFC0033F793 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D4D265420822CFC0033F793 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +103,40 @@
 			path = image;
 			sourceTree = "<group>";
 		};
+		1D387D3320D4EDE200020818 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1D387D3420D4EDF300020818 /* Category.swift */,
+				1D1A311120D3AC62008BC0FF /* GoogleMaps.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		1D387D3620D4F89100020818 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1D387D3920D4F8C300020818 /* AutocompleteDelegate.swift */,
+				1D40B6BF20D6048400C8F9E8 /* MapViewDelegate.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1D40B6C120D6675A00C8F9E8 /* Reducers */ = {
+			isa = PBXGroup;
+			children = (
+				1D40B6C220D6676D00C8F9E8 /* PlaceReducer.swift */,
+			);
+			path = Reducers;
+			sourceTree = "<group>";
+		};
+		1D40B6C620D668B100C8F9E8 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				1D40B6C720D668B900C8F9E8 /* AppState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
 		1D4D264620822CFC0033F793 = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +159,10 @@
 		1D4D265120822CFC0033F793 /* MapFinding */ = {
 			isa = PBXGroup;
 			children = (
+				1D40B6C620D668B100C8F9E8 /* State */,
+				1D40B6C120D6675A00C8F9E8 /* Reducers */,
+				1D387D3620D4F89100020818 /* Extensions */,
+				1D387D3320D4EDE200020818 /* Classes */,
 				0C01F7A520B4090D0061D0B2 /* image */,
 				1DD23F3E20B1928A001BEF22 /* Models */,
 				1DD23F3B20B190B5001BEF22 /* Actions */,
@@ -118,6 +172,7 @@
 				1D4D265920822CFC0033F793 /* Assets.xcassets */,
 				1D4D265B20822CFC0033F793 /* LaunchScreen.storyboard */,
 				1D4D265E20822CFC0033F793 /* Info.plist */,
+				1D1A310E20D3A0E3008BC0FF /* Constants.swift */,
 			);
 			path = MapFinding;
 			sourceTree = "<group>";
@@ -127,6 +182,7 @@
 			children = (
 				1DD23F3C20B190FF001BEF22 /* PlaceFinder.swift */,
 				0C01F79B20B339800061D0B2 /* configureMAP.swift */,
+				1D40B6C420D6684100C8F9E8 /* PlaceAction.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -248,12 +304,16 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MapFinding/Pods-MapFinding-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AwaitKit/AwaitKit.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/ReSwift/ReSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AwaitKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -307,13 +367,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D40B6C020D6048400C8F9E8 /* MapViewDelegate.swift in Sources */,
 				0C558334209378710086EABE /* DirectJSonFile.swift in Sources */,
+				1D387D3520D4EDF300020818 /* Category.swift in Sources */,
 				1DD23F4220B193F3001BEF22 /* Geometry.swift in Sources */,
+				1D387D3A20D4F8C300020818 /* AutocompleteDelegate.swift in Sources */,
+				1D40B6C520D6684100C8F9E8 /* PlaceAction.swift in Sources */,
+				1D40B6C820D668B900C8F9E8 /* AppState.swift in Sources */,
+				1D1A311220D3AC62008BC0FF /* GoogleMaps.swift in Sources */,
 				1D4D265520822CFC0033F793 /* ViewController.swift in Sources */,
 				1D4D265320822CFC0033F793 /* AppDelegate.swift in Sources */,
 				1DD23F4020B192FC001BEF22 /* Place.swift in Sources */,
+				1D40B6C320D6676D00C8F9E8 /* PlaceReducer.swift in Sources */,
 				0C01F79C20B339800061D0B2 /* configureMAP.swift in Sources */,
 				1DD23F3D20B190FF001BEF22 /* PlaceFinder.swift in Sources */,
+				1D1A310F20D3A0E3008BC0FF /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,10 +542,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F8SL983M9N;
 				INFOPLIST_FILE = MapFinding/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = vn.edu.hcmus.MapFinding;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -493,10 +558,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F8SL983M9N;
 				INFOPLIST_FILE = MapFinding/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = vn.edu.hcmus.MapFinding;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

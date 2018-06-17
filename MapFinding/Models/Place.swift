@@ -12,7 +12,6 @@ import Foundation
 struct opening_hours: Decodable {
     let open_now: Bool
 
-    
     init(dict: [String: Any]) {
         self.open_now = dict["open_now"] as? Bool ?? false
        

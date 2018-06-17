@@ -11,11 +11,7 @@ import GoogleMaps
 import GooglePlaces
 import CoreLocation
 
-var APIKey = "AIzaSyCqfMT5I-TaHa0-D7T4JrhCglzXxSALWc0"
-
 class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UISearchBarDelegate {
-    
-
     @IBOutlet weak var directionButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet var mapView: UIView!
@@ -24,6 +20,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     
     var currentLat: Double = 0.0
     var currentLong: Double = 0.0
+    var currentPosition: CLLocation = CLLocation()
+    
+    var listSelectFeatures: [Category] = []
     
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
@@ -32,8 +31,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     
     let featurePicker = UIPickerView()
     let locationManager = CLLocationManager()
-
-    let listSelectFeatures = ["atm", "gas_station", "hospital","police","cafe"]
+    
+    let googleMapsComponent = GoogleMapsComponent.shared;
     
     func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
@@ -47,13 +46,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-  
+        
+        // Init categories
+        for item in ["atm", "gas_station", "hospital","police", "cafe"] {
+            listSelectFeatures.append(Category(name: item))
+        }
 
         directionButton.setBackgroundImage(UIImage(named: "directions.png"), for: .normal)
 
         // Do any additional setup after loading the view, typically from a nib.
         resultsViewController = GMSAutocompleteResultsViewController()
-        resultsViewController?.delegate = self as GMSAutocompleteResultsViewControllerDelegate
+        resultsViewController?.delegate = self
         
         searchController = UISearchController(searchResultsController: resultsViewController)
         searchController?.searchResultsUpdater = resultsViewController
@@ -75,17 +78,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-       GoogleMap?.delegate = self
     }
-    
-    
-  
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last as! CLLocation
-        showCurrentLocationOnMap(location: location)
+        googleMapsComponent.showCurrentLocation(location: location, mapView: self.mapView)
         currentLat = location.coordinate.latitude
         currentLong = location.coordinate.longitude
+        self.currentPosition = location
         locationManager.stopUpdatingLocation()
     }
     
@@ -109,26 +109,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     @objc func onSelectFeaturePicker() {
         featurePickerTxt.resignFirstResponder()
     }
- 
-    
-    func showCurrentLocationOnMap(location: CLLocation) {
-        let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: 18)
-        GoogleMap = GMSMapView.map(withFrame: CGRect.init(x: 0, y: 0, width: self.mapView.frame.size.width, height: self.mapView.frame.size.height), camera: camera)
-        self.mapView.addSubview(GoogleMap!)
-        
-        GoogleMap?.settings.myLocationButton = true
-        GoogleMap?.isMyLocationEnabled = true
-        GoogleMap?.delegate = self
-        
-        
-        
-      
-        
-        
- 
-        
-        
-    }
     
  
     var Address:String = ""
@@ -148,7 +128,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         
         let temp = self.Address.replacingOccurrences(of: " ", with: "+")
         let Address = temp.replacingOccurrences(of: ",", with: "")
-        configureMAP().getDirection(lat: (self.GoogleMap?.myLocation?.coordinate.latitude)!, lng: (self.GoogleMap?.myLocation?.coordinate.longitude)!,Address: Address, APIKey: APIKey)
+        configureMAP().getDirection(lat: (self.GoogleMap?.myLocation?.coordinate.latitude)!, lng: (self.GoogleMap?.myLocation?.coordinate.longitude)!,Address: Address, APIKey: Constants.GOOGLE_API_KEY)
         {
             myDirection in
             var polyline = GMSPolyline()
@@ -183,100 +163,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return NSLocalizedString(listSelectFeatures[row], comment: "")
+        return NSLocalizedString(listSelectFeatures[row].Name, comment: "")
     }
 
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
         self.GoogleMap?.clear()
-        PlaceFinder.getPlaces(lat: currentLat, lng: currentLong, type: listSelectFeatures[row], range: 5000).done
-            { atm  in
-                for each in atm {
-                    var newMarker = GMSMarker()
-                    newMarker = configureMAP().drawPlaceByType(place: each, name: " ", type: self.listSelectFeatures[row]) // truyen type tu view picker
-                    newMarker.map = self.GoogleMap
-
-            }
-                
-        }
+        listSelectFeatures[row].getPlaces(currentLocation: currentPosition, range: 5000)
         self.directionButton.isHidden = true
  
     }
 }
-
-
-extension ViewController: GMSAutocompleteResultsViewControllerDelegate {
-    func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
-                           didAutocompleteWith place: GMSPlace) {
-        searchController?.isActive = false
-        
-        print("Place name: \(place.name)")
-        print("Place address: \(String(describing: place.formattedAddress))")
-        print("Place attributions: \(String(describing: place.placeID))")
-  
-        self.GoogleMap?.clear()
-        let camera = GMSCameraPosition.camera(withLatitude: place.coordinate.latitude  , longitude: place.coordinate.longitude, zoom: 15)
-      
-        self.GoogleMap?.animate(to: camera)
-        let marker = GMSMarker()
-        marker.position = camera.target
-        marker.snippet = String(place.formattedAddress!)
-        marker.title = String(place.name)
-        marker.appearAnimation = GMSMarkerAnimation.pop
-        marker.icon = GMSMarker.markerImage(with: .red)
-        marker.appearAnimation = GMSMarkerAnimation.pop
-        marker.map = self.GoogleMap
-        self.currentLat = place.coordinate.latitude
-        self.currentLong = place.coordinate.longitude
-    }
-    
-    
-    func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
-                           didFailAutocompleteWithError error: Error){
-        // TODO: handle the error.
-        print("Error: ", error.localizedDescription)
-    }
-    
-    // Turn the network activity indicator on and off again.
-    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-    }
-    
-    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-    }
-}
-
-
-extension ViewController: GMSMapViewDelegate {
-
-    
-    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-    
-        guard let data = marker.userData as? String else { return false}
-        self.directionButton.isHidden = false
-        self.mapView.addSubview(directionButton)
-        let parseData = data.components(separatedBy: "+")
-        self.Address = parseData[0]
-        self.placeID = parseData[1]
-        mapView.moveCamera(GMSCameraUpdate.zoom(by: 2))
-        return false
-    }
-    
- 
-    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        self.directionButton.isHidden = true
-    }
-    
-
-    
-    func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
-        self.currentLong = (mapView.myLocation?.coordinate.longitude)!
-        self.currentLat = (mapView.myLocation?.coordinate.latitude)!
-        
-        return false
-    }
-}
-
-

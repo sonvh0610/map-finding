@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (4.7.1)
+  - AwaitKit (5.0.0):
+    - PromiseKit (~> 6)
   - GoogleMaps (2.6.0):
     - GoogleMaps/Maps (= 2.6.0)
   - GoogleMaps/Base (2.6.0)
@@ -19,29 +21,36 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (6.2.4):
     - PromiseKit/CorePromise
+  - ReSwift (4.0.1)
 
 DEPENDENCIES:
   - Alamofire
+  - AwaitKit (~> 5.0.0)
   - GoogleMaps
   - GooglePlacePicker
   - GooglePlaces
   - PromiseKit
+  - ReSwift
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
+    - AwaitKit
     - GoogleMaps
     - GooglePlacePicker
     - GooglePlaces
     - PromiseKit
+    - ReSwift
 
 SPEC CHECKSUMS:
   Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
+  AwaitKit: d8a6e30eeb2da916630270b44636b31033388bd8
   GoogleMaps: 42f91c68b7fa2f84d5c86597b18ceb99f5414c7f
   GooglePlacePicker: e4488625effb006f59de49e14b7a603e463e4261
   GooglePlaces: f6ddf33b75cef69e888907d9947c57198ed845f3
   PromiseKit: 625b1fc69944fc839503748101c5968cf54b527b
+  ReSwift: f4012c613e13da7398827fe5aebdb938eaed40a3
 
-PODFILE CHECKSUM: 52d97a65097883c07faf317b9e785d010e86bdf6
+PODFILE CHECKSUM: c21c756a3fce6d93a8113fd4ca78fd92bc8e355b
 
 COCOAPODS: 1.5.0

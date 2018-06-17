@@ -9,19 +9,18 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
+import ReSwift
+
+let mainStore = Store<AppState>(reducer: placeReducer, state: nil)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-    var APIKey = "AIzaSyCqfMT5I-TaHa0-D7T4JrhCglzXxSALWc0"
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
-        
-    
-        GMSServices.provideAPIKey(APIKey)
-        GMSPlacesClient.provideAPIKey(APIKey)
+        GMSServices.provideAPIKey(Constants.GOOGLE_API_KEY)
+        GMSPlacesClient.provideAPIKey(Constants.GOOGLE_API_KEY)
         
         // Override point for customization after application launch.
         return true

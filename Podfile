@@ -6,5 +6,7 @@ target 'MapFinding' do
     pod 'GooglePlacePicker'
     pod 'GoogleMaps'
     pod 'PromiseKit'
+    pod 'AwaitKit', '~> 5.0.0'
     pod 'Alamofire'
+    pod 'ReSwift'
 end
