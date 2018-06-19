@@ -30,8 +30,8 @@ extension ViewController: GMSAutocompleteResultsViewControllerDelegate {
         marker.icon = GMSMarker.markerImage(with: .red)
         marker.appearAnimation = GMSMarkerAnimation.pop
         marker.map = self.GoogleMap
-        self.currentLat = place.coordinate.latitude
-        self.currentLong = place.coordinate.longitude
+//        self.currentLat = place.coordinate.latitude
+//        self.currentLong = place.coordinate.longitude
     }
 
 

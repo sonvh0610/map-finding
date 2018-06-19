@@ -8,8 +8,8 @@
 
 import ReSwift
 
-func placeReducer(action: Action, state: AppState?) -> AppState {
-    var state = state ?? AppState()
+func placeReducer(action: Action, state: PlaceState?) -> PlaceState {
+    var state = state ?? PlaceState()
     
     switch (action) {
     case let action as PlaceFindByType:

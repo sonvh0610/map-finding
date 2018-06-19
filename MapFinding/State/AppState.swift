@@ -8,6 +8,15 @@
 
 import ReSwift
 
-struct AppState: StateType {
+struct PlaceState: StateType {
     var listPlaces: [Place] = []
+}
+
+struct FilterState: StateType {
+    var selectedFeature: Int = -1
+}
+
+struct AppState: StateType {
+    var place: PlaceState = PlaceState()
+    var filter: FilterState = FilterState()
 }

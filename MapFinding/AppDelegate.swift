@@ -11,7 +11,7 @@ import GoogleMaps
 import GooglePlaces
 import ReSwift
 
-let mainStore = Store<AppState>(reducer: placeReducer, state: nil)
+let mainStore = Store<AppState>(reducer: appReducer, state: nil)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

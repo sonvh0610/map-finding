@@ -7,22 +7,21 @@
 //
 
 import UIKit
+import ReSwift
 import GoogleMaps
 import GooglePlaces
 import CoreLocation
 
-class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UISearchBarDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UISearchBarDelegate, StoreSubscriber {
     @IBOutlet weak var directionButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet var mapView: UIView!
     @IBOutlet weak var featureBtn: UIButton!
     @IBOutlet weak var featurePickerTxt: UITextField!
     
-    var currentLat: Double = 0.0
-    var currentLong: Double = 0.0
     var currentPosition: CLLocation = CLLocation()
-    
     var listSelectFeatures: [Category] = []
+    let googleMapsComponent = GoogleMapsComponent.shared;
     
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
@@ -32,8 +31,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     let featurePicker = UIPickerView()
     let locationManager = CLLocationManager()
     
-    let googleMapsComponent = GoogleMapsComponent.shared;
-    
     func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
         //image.draw(in: CGRectMake(0, 0, newSize.width, newSize.height))
@@ -42,8 +39,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         UIGraphicsEndImageContext()
         return newImage
     }
-
     
+    func newState(state: AppState) {
+        // code
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        mainStore.subscribe(self)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        mainStore.unsubscribe(self)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -72,19 +82,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         // Prevent the navigation bar from being hidden when searching.
         searchController?.hidesNavigationBarDuringPresentation = false
 
-        initFeaturePicker()
+        self.initFeaturePicker()
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last as! CLLocation
         googleMapsComponent.showCurrentLocation(location: location, mapView: self.mapView)
-        currentLat = location.coordinate.latitude
-        currentLong = location.coordinate.longitude
         self.currentPosition = location
         locationManager.stopUpdatingLocation()
     }
@@ -108,6 +116,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     
     @objc func onSelectFeaturePicker() {
         featurePickerTxt.resignFirstResponder()
+        self.googleMapsComponent.MapInstance?.clear()
+        
+        var selectedFeature = mainStore.state.filter.selectedFeature
+        listSelectFeatures[selectedFeature].getPlaces(currentLocation: currentPosition, range: 5000)
     }
     
  
@@ -168,8 +180,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
 
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.GoogleMap?.clear()
-        listSelectFeatures[row].getPlaces(currentLocation: currentPosition, range: 5000)
+        mainStore.dispatch(SelectFeatureIndex(index: row))
         self.directionButton.isHidden = true
  
     }
