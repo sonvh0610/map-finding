@@ -11,6 +11,7 @@ import ReSwift
 import GoogleMaps
 import GooglePlaces
 import CoreLocation
+import Material
 
 class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UISearchBarDelegate, StoreSubscriber {
     @IBOutlet weak var directionButton: UIButton!
@@ -30,6 +31,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     
     let featurePicker = UIPickerView()
     let locationManager = CLLocationManager()
+    
+    var placeCard: Card!
+    var toolbar: Toolbar!
+    var contentView: UILabel!
+    var bottomBar: Bar!
+    var moreButton: IconButton!
     
     func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
@@ -83,6 +90,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         searchController?.hidesNavigationBarDuringPresentation = false
 
         self.initFeaturePicker()
+        prepareMoreButton()
+        prepareToolbar()
+        prepareContentView()
+        prepareBottomBar()
+        prepareCard()
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
@@ -96,6 +108,53 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         self.currentPosition = location
         locationManager.stopUpdatingLocation()
     }
+    
+    func prepareCard() {
+        placeCard = Card()
+        
+        placeCard.toolbar = toolbar
+        placeCard.toolbarEdgeInsetsPreset = .square3
+        placeCard.toolbarEdgeInsets.bottom = 0
+        placeCard.toolbarEdgeInsets.right = 8
+        
+        placeCard.contentView = contentView
+        placeCard.contentViewEdgeInsetsPreset = .wideRectangle3
+        
+        placeCard.bottomBar = bottomBar
+        placeCard.bottomBarEdgeInsetsPreset = .wideRectangle2
+        
+        view.layout(placeCard).horizontally(left: 10, right: 10).height(150).bottom(20)
+    }
+    
+    func prepareContentView() {
+        contentView = UILabel()
+        contentView.numberOfLines = 0
+        contentView.text = "Material is an animation and graphics framework that is used to create beautiful applications."
+        contentView.font = RobotoFont.regular(with: 14)
+    }
+    
+    func prepareToolbar() {
+        toolbar = Toolbar(rightViews: [moreButton])
+        
+        toolbar.title = "Material"
+        toolbar.titleLabel.textAlignment = .left
+        
+        toolbar.detail = "Build Beautiful Software"
+        toolbar.detailLabel.textAlignment = .left
+        toolbar.detailLabel.textColor = Color.grey.base
+    }
+    
+    func prepareMoreButton() {
+        moreButton = IconButton(image: Icon.cm.moreVertical, tintColor: Color.grey.base)
+    }
+    
+    func prepareBottomBar() {
+        bottomBar = Bar()
+        
+//        bottomBar.leftViews = [favoriteButton]
+//        bottomBar.rightViews = [dateLabel]
+    }
+
     
     func initFeaturePicker() {
         let toolbar = UIToolbar()
@@ -118,7 +177,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         featurePickerTxt.resignFirstResponder()
         self.googleMapsComponent.MapInstance?.clear()
         
-        var selectedFeature = mainStore.state.filter.selectedFeature
+        let selectedFeature = mainStore.state.filter.selectedFeature
         listSelectFeatures[selectedFeature].getPlaces(currentLocation: currentPosition, range: 5000)
     }
     

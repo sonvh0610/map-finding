@@ -1,7 +1,5 @@
 PODS:
   - Alamofire (4.7.1)
-  - AwaitKit (5.0.0):
-    - PromiseKit (~> 6)
   - GoogleMaps (2.6.0):
     - GoogleMaps/Maps (= 2.6.0)
   - GoogleMaps/Base (2.6.0)
@@ -12,6 +10,13 @@ PODS:
     - GooglePlaces (= 2.6.0)
   - GooglePlaces (2.6.0):
     - GoogleMaps/Base (= 2.6.0)
+  - Material (2.14.0):
+    - Material/Core (= 2.14.0)
+  - Material/Core (2.14.0):
+    - Motion (~> 1.3.0)
+  - Motion (1.3.5):
+    - Motion/Core (= 1.3.5)
+  - Motion/Core (1.3.5)
   - PromiseKit (6.2.4):
     - PromiseKit/CorePromise (= 6.2.4)
     - PromiseKit/Foundation (= 6.2.4)
@@ -25,32 +30,34 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
-  - AwaitKit (~> 5.0.0)
   - GoogleMaps
   - GooglePlacePicker
   - GooglePlaces
+  - Material (~> 2.0)
   - PromiseKit
   - ReSwift
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
-    - AwaitKit
     - GoogleMaps
     - GooglePlacePicker
     - GooglePlaces
+    - Material
+    - Motion
     - PromiseKit
     - ReSwift
 
 SPEC CHECKSUMS:
   Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
-  AwaitKit: d8a6e30eeb2da916630270b44636b31033388bd8
   GoogleMaps: 42f91c68b7fa2f84d5c86597b18ceb99f5414c7f
   GooglePlacePicker: e4488625effb006f59de49e14b7a603e463e4261
   GooglePlaces: f6ddf33b75cef69e888907d9947c57198ed845f3
+  Material: c5bea030f57d4b903c5284200bb612d571c9ec03
+  Motion: 9f74d115d7f72bb5380a8e3cde2f8a1fc898ac36
   PromiseKit: 625b1fc69944fc839503748101c5968cf54b527b
   ReSwift: f4012c613e13da7398827fe5aebdb938eaed40a3
 
-PODFILE CHECKSUM: c21c756a3fce6d93a8113fd4ca78fd92bc8e355b
+PODFILE CHECKSUM: 760ae91dcd64de4a3002507ad379a5bc6bfb5cc6
 
 COCOAPODS: 1.5.0
