@@ -37,6 +37,10 @@
 		1DD23F3D20B190FF001BEF22 /* PlaceFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD23F3C20B190FF001BEF22 /* PlaceFinder.swift */; };
 		1DD23F4020B192FC001BEF22 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD23F3F20B192FC001BEF22 /* Place.swift */; };
 		1DD23F4220B193F3001BEF22 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD23F4120B193F3001BEF22 /* Geometry.swift */; };
+		1DEB3C9B20DD5D61005A14AE /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1DEB3C9920DD5D61005A14AE /* CoreData.xcdatamodeld */; };
+		1DEB3C9D20DD5FA2005A14AE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DEB3C9C20DD5FA2005A14AE /* CoreData.framework */; };
+		1DEB3C9F20DD5FB1005A14AE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DEB3C9E20DD5FB1005A14AE /* Foundation.framework */; };
+		1DEB3CA120DD5FBF005A14AE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DEB3CA020DD5FBF005A14AE /* UIKit.framework */; };
 		36B13DF851A3EB5C2FC6348E /* Pods_MapFinding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F886F27815CC0523E850981 /* Pods_MapFinding.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +82,10 @@
 		1DD23F3C20B190FF001BEF22 /* PlaceFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceFinder.swift; sourceTree = "<group>"; };
 		1DD23F3F20B192FC001BEF22 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		1DD23F4120B193F3001BEF22 /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
+		1DEB3C9A20DD5D61005A14AE /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
+		1DEB3C9C20DD5FA2005A14AE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		1DEB3C9E20DD5FB1005A14AE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1DEB3CA020DD5FBF005A14AE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24405DD1460984F9DBC01C54 /* Pods-MapFinding.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapFinding.release.xcconfig"; path = "Pods/Target Support Files/Pods-MapFinding/Pods-MapFinding.release.xcconfig"; sourceTree = "<group>"; };
 		6F886F27815CC0523E850981 /* Pods_MapFinding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapFinding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF3FCA403174C49A7A52C0DC /* Pods-MapFinding.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapFinding.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MapFinding/Pods-MapFinding.debug.xcconfig"; sourceTree = "<group>"; };
@@ -88,6 +96,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DEB3CA120DD5FBF005A14AE /* UIKit.framework in Frameworks */,
+				1DEB3C9F20DD5FB1005A14AE /* Foundation.framework in Frameworks */,
+				1DEB3C9D20DD5FA2005A14AE /* CoreData.framework in Frameworks */,
 				1D62DF2A20823DE7003125D9 /* CoreLocation.framework in Frameworks */,
 				36B13DF851A3EB5C2FC6348E /* Pods_MapFinding.framework in Frameworks */,
 			);
@@ -171,6 +182,7 @@
 				1D4D265B20822CFC0033F793 /* LaunchScreen.storyboard */,
 				1D4D265E20822CFC0033F793 /* Info.plist */,
 				1D1A310E20D3A0E3008BC0FF /* Constants.swift */,
+				1DEB3C9920DD5D61005A14AE /* CoreData.xcdatamodeld */,
 			);
 			path = MapFinding;
 			sourceTree = "<group>";
@@ -202,6 +214,9 @@
 		82D5350ED3CC2987473F0B02 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1DEB3CA020DD5FBF005A14AE /* UIKit.framework */,
+				1DEB3C9E20DD5FB1005A14AE /* Foundation.framework */,
+				1DEB3C9C20DD5FA2005A14AE /* CoreData.framework */,
 				1DD23F3520B16388001BEF22 /* libGooglePlacesPicker.a */,
 				1DD23F3320B1629D001BEF22 /* libGooglePlacesPicker.a */,
 				1D62DF2920823DE7003125D9 /* CoreLocation.framework */,
@@ -385,6 +400,7 @@
 				1D4D265320822CFC0033F793 /* AppDelegate.swift in Sources */,
 				1DD23F4020B192FC001BEF22 /* Place.swift in Sources */,
 				1D40B6C320D6676D00C8F9E8 /* PlaceReducer.swift in Sources */,
+				1DEB3C9B20DD5D61005A14AE /* CoreData.xcdatamodeld in Sources */,
 				0C01F79C20B339800061D0B2 /* configureMAP.swift in Sources */,
 				1DD23F3D20B190FF001BEF22 /* PlaceFinder.swift in Sources */,
 				1D37E09D20D8E77C000BEF46 /* FilterAction.swift in Sources */,
@@ -550,7 +566,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F8SL983M9N;
 				INFOPLIST_FILE = MapFinding/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = vn.edu.hcmus.MapFinding;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -566,7 +585,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F8SL983M9N;
 				INFOPLIST_FILE = MapFinding/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = vn.edu.hcmus.MapFinding;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -596,6 +618,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1DEB3C9920DD5D61005A14AE /* CoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1DEB3C9A20DD5D61005A14AE /* CoreData.xcdatamodel */,
+			);
+			currentVersion = 1DEB3C9A20DD5D61005A14AE /* CoreData.xcdatamodel */;
+			path = CoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1D4D264720822CFC0033F793 /* Project object */;
 }

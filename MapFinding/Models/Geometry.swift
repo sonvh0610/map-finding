@@ -9,19 +9,27 @@
 import Foundation
 
 struct GeometryLocation: Decodable {
-    let Location: Coordinates
+    var Location: Coordinates = Coordinates()
     
     init(dict: [String: Any]) {
         self.Location = Coordinates(dict: dict["location"] as? [String: Any] ?? [:])
     }
+    
+    init() {
+        
+    }
 }
 
 struct Coordinates: Decodable {
-    let Latitude: Double
-    let Longitude: Double
+    var Latitude: Double = 0
+    var Longitude: Double = 0
     
     init(dict: [String: Any]) {
         self.Latitude = dict["lat"] as? Double ?? 0
         self.Longitude = dict["lng"] as? Double ?? 0
+    }
+    
+    init() {
+        
     }
 }

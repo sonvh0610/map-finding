@@ -12,6 +12,7 @@ import GooglePlaces
 struct PlaceState: StateType {
     var currentLocation: CLLocation = CLLocation()
     var listPlaces: [Place] = []
+    var selectedPlaceIndex: Int = 0
 }
 
 struct FilterState: StateType {

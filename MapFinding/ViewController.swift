@@ -12,6 +12,7 @@ import GoogleMaps
 import GooglePlaces
 import CoreLocation
 import Material
+import CoreData
 
 class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UISearchBarDelegate, StoreSubscriber {
     @IBOutlet weak var searchBar: UISearchBar!
@@ -35,6 +36,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     var contentView: UILabel!
     var bottomBar: Bar!
     var closeButton: IconButton!
+    var favoriteButton: IconButton!
     
     func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
@@ -86,6 +88,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         searchController?.hidesNavigationBarDuringPresentation = false
 
         self.initFeaturePicker()
+        prepareFavoriteButton()
         prepareCloseButton()
         prepareToolbar()
         prepareContentView()
@@ -142,9 +145,36 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         toolbar.detailLabel.textColor = Color.grey.base
     }
     
+    func prepareFavoriteButton() {
+        favoriteButton = IconButton(image: Icon.favorite, tintColor: Color.red.base)
+        favoriteButton.addTarget(self, action: #selector(self.onBookmarkTapped), for: .touchUpInside)
+    }
+    
+    @objc private func onBookmarkTapped() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Bookmark", in: context)
+        let bookmark = NSManagedObject(entity: entity!, insertInto: context)
+        
+        let listPlaces = mainStore.state.place.listPlaces
+        let selectedPlaceIndex = mainStore.state.place.selectedPlaceIndex
+        
+        bookmark.setValue(listPlaces[selectedPlaceIndex].Id, forKey: "id")
+        bookmark.setValue(listPlaces[selectedPlaceIndex].Name, forKey: "name")
+        bookmark.setValue(listPlaces[selectedPlaceIndex].Vicinity, forKey: "address")
+        
+        do {
+            try context.save()
+        }
+        catch {
+            print("Save context failed")
+        }
+    }
+    
     func prepareCloseButton() {
         closeButton = IconButton(image: Icon.cm.close, tintColor: Color.grey.base)
         closeButton.addTarget(self, action: #selector(self.onCloseButtonTapped), for: .touchUpInside)
+        self.googleMapsComponent.MapInstance?.clear()
     }
     
     @objc private func onCloseButtonTapped() {
@@ -154,7 +184,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     func prepareBottomBar() {
         bottomBar = Bar()
         
-//        bottomBar.leftViews = [favoriteButton]
+        bottomBar.leftViews = [favoriteButton]
 //        bottomBar.rightViews = [dateLabel]
     }
 
@@ -185,7 +215,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         
         let selectedFeatureIndex = mainStore.state.filter.selectedFeature
         listSelectFeatures[selectedFeatureIndex].getPlaces(currentLocation: mainStore.state.place.currentLocation).done{ results in
-            print(results)
+            mainStore.dispatch(SaveListPlaces(places: results))
             if (results.count > 0) {
                 let dest = CLLocation(latitude: results[0].Geometry.Location.Latitude, longitude: results[0].Geometry.Location.Longitude)
                 self.googleMapsComponent.showDirections(from: mainStore.state.place.currentLocation, to: dest)
@@ -193,6 +223,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
                 self.placeCard.isHidden = false
                 self.toolbar.title = results[0].Name
                 self.toolbar.detail = results[0].Vicinity
+                
+                mainStore.dispatch(SelectPlace(index: 0))
             }
         }
     }

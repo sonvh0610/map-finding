@@ -13,6 +13,10 @@ struct SaveCurrentLocation: Action {
     var currentLocation: CLLocation
 }
 
-struct PlaceFindByType: Action {
-    var category: Category
+struct SaveListPlaces: Action {
+    var places: [Place]
+}
+
+struct SelectPlace: Action {
+    var index: Int
 }

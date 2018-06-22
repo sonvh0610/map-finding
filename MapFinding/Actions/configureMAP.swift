@@ -27,7 +27,7 @@ class configureMAP: UIViewController {
     let nameUpper = name.uppercased()
     var open = NSLocalizedString("Tình trạng: ", comment: "")
 
-    if ( place.Open.open_now == true) {
+    if ( place.Open.OpenNow == true) {
         open  += NSLocalizedString("Đang hoạt động", comment: "")
     }
     else {
