@@ -33,7 +33,7 @@ final class GoogleMapsComponent {
     }
     
     public func getPlaces(lat: Double, lng: Double, type: String, range: Int) -> Promise<[Place]> {
-        let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(lat),\(lng)&radius=\(range)&type=\(type)&key=\(Constants.GOOGLE_API_KEY)"
+        let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(lat),\(lng)&rankby=distance&type=\(type)&key=\(Constants.GOOGLE_API_KEY)"
         
         return Promise<[Place]> { seal -> Void in
             Alamofire.request(url)

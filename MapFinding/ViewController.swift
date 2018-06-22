@@ -36,7 +36,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     var toolbar: Toolbar!
     var contentView: UILabel!
     var bottomBar: Bar!
-    var moreButton: IconButton!
+    var closeButton: IconButton!
     
     func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
@@ -90,7 +90,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         searchController?.hidesNavigationBarDuringPresentation = false
 
         self.initFeaturePicker()
-        prepareMoreButton()
+        prepareCloseButton()
         prepareToolbar()
         prepareContentView()
         prepareBottomBar()
@@ -122,6 +122,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         
         placeCard.bottomBar = bottomBar
         placeCard.bottomBarEdgeInsetsPreset = .wideRectangle2
+        placeCard.isHidden = true
         
         view.layout(placeCard).horizontally(left: 10, right: 10).height(150).bottom(20)
     }
@@ -134,7 +135,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     }
     
     func prepareToolbar() {
-        toolbar = Toolbar(rightViews: [moreButton])
+        toolbar = Toolbar(rightViews: [closeButton])
         
         toolbar.title = "Material"
         toolbar.titleLabel.textAlignment = .left
@@ -144,8 +145,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         toolbar.detailLabel.textColor = Color.grey.base
     }
     
-    func prepareMoreButton() {
-        moreButton = IconButton(image: Icon.cm.moreVertical, tintColor: Color.grey.base)
+    func prepareCloseButton() {
+        closeButton = IconButton(image: Icon.cm.close, tintColor: Color.grey.base)
+        closeButton.addTarget(self, action: #selector(self.onCloseButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func onCloseButtonTapped() {
+        self.placeCard.isHidden = true
     }
     
     func prepareBottomBar() {
@@ -162,8 +168,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         toolbar.isTranslucent = true
         toolbar.sizeToFit()
         
-        let doneBtn = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(ViewController.onSelectFeaturePicker))
-        toolbar.setItems([doneBtn], animated: false)
+        let doneBtn = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.onSelectFeaturePicker))
+        let btnSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        btnSpacer.width = UIScreen.main.bounds.width - 50
+        let cancelBtn = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.onCancelFeaturePicker))
+        toolbar.setItems([doneBtn, btnSpacer, cancelBtn], animated: false)
         toolbar.isUserInteractionEnabled = true
         
         featurePicker.delegate = self
@@ -179,6 +188,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         
         let selectedFeature = mainStore.state.filter.selectedFeature
         listSelectFeatures[selectedFeature].getPlaces(currentLocation: currentPosition, range: 5000)
+    }
+    
+    @objc private func onCancelFeaturePicker() {
+        self.featurePickerTxt.resignFirstResponder()
     }
     
  
