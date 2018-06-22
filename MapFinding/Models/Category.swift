@@ -9,6 +9,7 @@
 import Foundation
 import GoogleMaps
 import GooglePlaces
+import PromiseKit
 
 class Category {
     private var name = ""
@@ -24,17 +25,20 @@ class Category {
         self.instance = GoogleMapsComponent.shared
     }
     
-    func getPlaces(currentLocation: CLLocation, range: Int) {
-        self.instance.getPlaces(lat: currentLocation.coordinate.latitude, lng: currentLocation.coordinate.longitude, type: self.name, range: range).done { results in
-            for place in results {
-                let marker = GMSMarker()
-                marker.title = place.Name
-                marker.snippet = place.Vicinity
-                marker.position.latitude = place.Geometry.Location.Latitude
-                marker.position.longitude = place.Geometry.Location.Longitude
-                marker.appearAnimation = .pop
-                marker.userData = place.PlaceId
-                marker.map = self.instance.MapInstance
+    func getPlaces(currentLocation: CLLocation) -> Promise<[Place]> {
+        return Promise<[Place]> { seal -> Void in
+            self.instance.getPlaces(lat: currentLocation.coordinate.latitude, lng: currentLocation.coordinate.longitude, type: self.name).done { results in
+                for place in results {
+                    let marker = GMSMarker()
+                    marker.title = place.Name
+                    marker.snippet = place.Vicinity
+                    marker.position.latitude = place.Geometry.Location.Latitude
+                    marker.position.longitude = place.Geometry.Location.Longitude
+                    marker.appearAnimation = .pop
+                    marker.userData = place.PlaceId
+                    marker.map = self.instance.MapInstance
+                }
+                seal.fulfill(results)
             }
         }
     }

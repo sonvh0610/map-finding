@@ -11,6 +11,7 @@ import GoogleMaps
 import GooglePlaces
 import PromiseKit
 import Alamofire
+import SwiftyJSON
 
 final class GoogleMapsComponent {
     static let shared: GoogleMapsComponent = GoogleMapsComponent();
@@ -32,7 +33,7 @@ final class GoogleMapsComponent {
         //mapInstance?.delegate = self
     }
     
-    public func getPlaces(lat: Double, lng: Double, type: String, range: Int) -> Promise<[Place]> {
+    public func getPlaces(lat: Double, lng: Double, type: String) -> Promise<[Place]> {
         let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(lat),\(lng)&rankby=distance&type=\(type)&key=\(Constants.GOOGLE_API_KEY)"
         
         return Promise<[Place]> { seal -> Void in
@@ -54,6 +55,31 @@ final class GoogleMapsComponent {
                     case .failure(let error):
                         seal.reject(error)
                     }
+            }
+        }
+    }
+    
+    public func showDirections(from: CLLocation, to: CLLocation) {
+        let origin = "\(from.coordinate.latitude),\(from.coordinate.longitude)"
+        let destination = "\(to.coordinate.latitude),\(to.coordinate.longitude)"
+        
+        let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=walking"
+        
+        Alamofire.request(url).responseJSON { response in
+            do {
+                let json = try JSON(data: response.data!)
+                let routes = json["routes"].arrayValue
+                
+                for route in routes {
+                    let routeOverviewPolyline = route["overview_polyline"].dictionary
+                    let points = routeOverviewPolyline?["points"]?.stringValue
+                    let path = GMSPath.init(fromEncodedPath: points!)
+                    let polyline = GMSPolyline.init(path: path)
+                    polyline.map = self.MapInstance
+                }
+            }
+            catch {
+                print("Direction error occurs!")
             }
         }
     }

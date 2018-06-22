@@ -9,7 +9,10 @@
 import ReSwift
 import GooglePlaces
 
-struct PlaceFindByType: Action {
+struct SaveCurrentLocation: Action {
     var currentLocation: CLLocation
+}
+
+struct PlaceFindByType: Action {
     var category: Category
 }

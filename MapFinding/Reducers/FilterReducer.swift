@@ -15,6 +15,7 @@ func filterReducer(action: Action, state: FilterState?) -> FilterState {
     case let action as SelectFeatureIndex:
         state.selectedFeature = action.index
         break
+        
     default:
         break
     }

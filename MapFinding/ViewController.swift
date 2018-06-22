@@ -14,13 +14,11 @@ import CoreLocation
 import Material
 
 class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UISearchBarDelegate, StoreSubscriber {
-    @IBOutlet weak var directionButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet var mapView: UIView!
     @IBOutlet weak var featureBtn: UIButton!
     @IBOutlet weak var featurePickerTxt: UITextField!
     
-    var currentPosition: CLLocation = CLLocation()
     var listSelectFeatures: [Category] = []
     let googleMapsComponent = GoogleMapsComponent.shared;
     
@@ -69,8 +67,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
             listSelectFeatures.append(Category(name: item))
         }
 
-        directionButton.setBackgroundImage(UIImage(named: "directions.png"), for: .normal)
-
         // Do any additional setup after loading the view, typically from a nib.
         resultsViewController = GMSAutocompleteResultsViewController()
         resultsViewController?.delegate = self
@@ -105,7 +101,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last as! CLLocation
         googleMapsComponent.showCurrentLocation(location: location, mapView: self.mapView)
-        self.currentPosition = location
+        mainStore.dispatch(SaveCurrentLocation(currentLocation: location))
+        
         locationManager.stopUpdatingLocation()
     }
     
@@ -186,53 +183,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         featurePickerTxt.resignFirstResponder()
         self.googleMapsComponent.MapInstance?.clear()
         
-        let selectedFeature = mainStore.state.filter.selectedFeature
-        listSelectFeatures[selectedFeature].getPlaces(currentLocation: currentPosition, range: 5000)
+        let selectedFeatureIndex = mainStore.state.filter.selectedFeature
+        listSelectFeatures[selectedFeatureIndex].getPlaces(currentLocation: mainStore.state.place.currentLocation).done{ results in
+            print(results)
+            if (results.count > 0) {
+                let dest = CLLocation(latitude: results[0].Geometry.Location.Latitude, longitude: results[0].Geometry.Location.Longitude)
+                self.googleMapsComponent.showDirections(from: mainStore.state.place.currentLocation, to: dest)
+                
+                self.placeCard.isHidden = false
+                self.toolbar.title = results[0].Name
+                self.toolbar.detail = results[0].Vicinity
+            }
+        }
     }
     
     @objc private func onCancelFeaturePicker() {
         self.featurePickerTxt.resignFirstResponder()
     }
-    
- 
-    var Address:String = ""
-    var placeID:String = ""
-    @IBAction func actionDirectionButton(_ sender: Any)
-    {
-        self.GoogleMap?.clear()
-        
-        
-        DispatchQueue.main.async {
-            let id = self.placeID
-            var newMarker = GMSMarker()
-            newMarker = configureMAP().drawPlaceByPlaceID(placeID: id)
-            newMarker.map = self.GoogleMap
-        }
-        
-        
-        let temp = self.Address.replacingOccurrences(of: " ", with: "+")
-        let Address = temp.replacingOccurrences(of: ",", with: "")
-        configureMAP().getDirection(lat: (self.GoogleMap?.myLocation?.coordinate.latitude)!, lng: (self.GoogleMap?.myLocation?.coordinate.longitude)!,Address: Address, APIKey: Constants.GOOGLE_API_KEY)
-        {
-            myDirection in
-            var polyline = GMSPolyline()
-            for route in myDirection.routes
-            {
-                DispatchQueue.main.async
-                    {
-                    let points = route.overview_polyline.points
-                    let path = GMSPath.init(fromEncodedPath:points)
-                    polyline = GMSPolyline.init(path:path)
-                    polyline.strokeWidth = 4
-                    polyline.strokeColor = UIColor.red
-                    polyline.isTappable = true
-                    polyline.map = self.GoogleMap
-                    }
-            }
-        }
-    }
-    
-    
     
     @IBAction func onSelectFeature(_ sender: UIButton) {
         featurePickerTxt.becomeFirstResponder()
@@ -253,7 +220,5 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         mainStore.dispatch(SelectFeatureIndex(index: row))
-        self.directionButton.isHidden = true
- 
     }
 }

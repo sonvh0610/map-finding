@@ -9,4 +9,5 @@ target 'MapFinding' do
     pod 'Material', '~> 2.0'
     pod 'Alamofire'
     pod 'ReSwift'
+    pod 'SwiftyJSON'
 end

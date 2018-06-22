@@ -11,3 +11,7 @@ import ReSwift
 struct SelectFeatureIndex: Action {
     var index: Int
 }
+
+struct SetCardVisible: Action {
+    var cardVisible: Bool
+}

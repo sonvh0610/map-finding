@@ -27,6 +27,7 @@ PODS:
   - PromiseKit/UIKit (6.2.4):
     - PromiseKit/CorePromise
   - ReSwift (4.0.1)
+  - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -36,6 +37,7 @@ DEPENDENCIES:
   - Material (~> 2.0)
   - PromiseKit
   - ReSwift
+  - SwiftyJSON
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -47,6 +49,7 @@ SPEC REPOS:
     - Motion
     - PromiseKit
     - ReSwift
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
@@ -57,7 +60,8 @@ SPEC CHECKSUMS:
   Motion: 9f74d115d7f72bb5380a8e3cde2f8a1fc898ac36
   PromiseKit: 625b1fc69944fc839503748101c5968cf54b527b
   ReSwift: f4012c613e13da7398827fe5aebdb938eaed40a3
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 760ae91dcd64de4a3002507ad379a5bc6bfb5cc6
+PODFILE CHECKSUM: 2504d62fb6e920fffe02a62de3bc45a81f12ae9d
 
 COCOAPODS: 1.5.0

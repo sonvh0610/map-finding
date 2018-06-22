@@ -12,13 +12,17 @@ func placeReducer(action: Action, state: PlaceState?) -> PlaceState {
     var state = state ?? PlaceState()
     
     switch (action) {
-    case let action as PlaceFindByType:
-        var category = action.category
-        var currentLocation = action.currentLocation
+    case let action as SaveCurrentLocation:
+        state.currentLocation = action.currentLocation
+        break
         
-        category.getPlaces(currentLocation: currentLocation, range: 5000)
-        return state
+    case let action as PlaceFindByType:
+        let category = action.category
+        
+        category.getPlaces(currentLocation: state.currentLocation)
+        break
     default:
-        return state
+        break
     }
+    return state
 }

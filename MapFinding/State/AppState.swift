@@ -7,13 +7,15 @@
 //
 
 import ReSwift
+import GooglePlaces
 
 struct PlaceState: StateType {
+    var currentLocation: CLLocation = CLLocation()
     var listPlaces: [Place] = []
 }
 
 struct FilterState: StateType {
-    var selectedFeature: Int = -1
+    var selectedFeature: Int = 0
 }
 
 struct AppState: StateType {

@@ -20,19 +20,6 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LOA-7G-wBo">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <subviews>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l16-fg-Le7">
-                                        <rect key="frame" x="295" y="505" width="80" height="70"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" backgroundImage="white_icons.png">
-                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="actionDirectionButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rzj-jf-AZq"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="271-ms-WoZ">
@@ -68,7 +55,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="NZA-06-eV1"/>
                     <connections>
-                        <outlet property="directionButton" destination="l16-fg-Le7" id="yLt-Q8-iZW"/>
                         <outlet property="featureBtn" destination="XtM-0y-MKJ" id="5b5-k1-DlE"/>
                         <outlet property="featurePickerTxt" destination="271-ms-WoZ" id="doZ-pv-0pe"/>
                         <outlet property="mapView" destination="LOA-7G-wBo" id="Sm3-ad-KdE"/>
@@ -99,6 +85,5 @@
     </scenes>
     <resources>
         <image name="menu" width="64" height="64"/>
-        <image name="white_icons.png" width="896" height="28"/>
     </resources>
 </document>
