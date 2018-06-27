@@ -23,7 +23,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="271-ms-WoZ">
-                                <rect key="frame" x="0.0" y="737" width="25" height="30"/>
+                                <rect key="frame" x="0.0" y="547" width="25" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -43,13 +43,13 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="271-ms-WoZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="LS6-YI-ROJ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="271-ms-WoZ" secondAttribute="bottom" constant="-100" id="Tgq-xf-gdI"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="XtM-0y-MKJ" secondAttribute="bottom" constant="10" id="U8K-Ei-d2a"/>
                             <constraint firstItem="LOA-7G-wBo" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="X2a-xM-bUb"/>
                             <constraint firstItem="LOA-7G-wBo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ZXg-Dk-bst"/>
                             <constraint firstItem="LOA-7G-wBo" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="c1I-5s-56f"/>
                             <constraint firstItem="XtM-0y-MKJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="eM3-wc-tUm"/>
                             <constraint firstItem="LOA-7G-wBo" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="fYi-f8-ceG"/>
+                            <constraint firstItem="XtM-0y-MKJ" firstAttribute="top" secondItem="271-ms-WoZ" secondAttribute="bottom" constant="20" id="wmj-EL-dvU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

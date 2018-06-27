@@ -12,7 +12,7 @@ import GooglePlaces
 
 extension ViewController: GMSAutocompleteResultsViewControllerDelegate {
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didAutocompleteWith place: GMSPlace) {
-        searchController?.isActive = false
+        searchController?.isActive = true
 
         print("Place name: \(place.name)")
         print("Place address: \(String(describing: place.formattedAddress))")

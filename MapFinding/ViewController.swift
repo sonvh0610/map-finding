@@ -65,7 +65,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         super.viewDidLoad()
         
         // Init categories
-        for item in ["atm", "gas_station", "hospital","police", "cafe"] {
+        for item in ["Atm", "gas_station", "hospital","police", "cafe"] {
             listSelectFeatures.append(Category(name: item))
         }
 
