@@ -38,6 +38,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     var closeButton: IconButton!
     var favoriteButton: IconButton!
     
+    var typeOfAtm: String = "" // loai ngan hang argibank, sacombank
+    
     func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
         //image.draw(in: CGRectMake(0, 0, newSize.width, newSize.height))
@@ -211,6 +213,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     
     @objc func onSelectFeaturePicker() {
         featurePickerTxt.resignFirstResponder()
+        
         self.googleMapsComponent.MapInstance?.clear()
         
         let selectedFeatureIndex = mainStore.state.filter.selectedFeature
@@ -230,6 +233,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     }
     
     @objc private func onCancelFeaturePicker() {
+       
         self.featurePickerTxt.resignFirstResponder()
     }
     
@@ -252,5 +256,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         mainStore.dispatch(SelectFeatureIndex(index: row))
+        print(listSelectFeatures[row].Name)
+        if  listSelectFeatures[row].Name == "Atm" {
+            let viewController = TypeAtmViewController.loadController()
+            viewController.delegate = self
+            self.present(viewController, animated: true, completion: nil)
+        }
+    }
+}
+
+
+// delegate lay data tu TypeAtmViewController
+extension ViewController:TypeAtmViewControllerDelegate {
+    func chooseTypeForAtm(type: String) {
+        self.typeOfAtm = type
     }
 }

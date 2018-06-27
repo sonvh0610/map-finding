@@ -42,6 +42,8 @@
 		1DEB3C9F20DD5FB1005A14AE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DEB3C9E20DD5FB1005A14AE /* Foundation.framework */; };
 		1DEB3CA120DD5FBF005A14AE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DEB3CA020DD5FBF005A14AE /* UIKit.framework */; };
 		36B13DF851A3EB5C2FC6348E /* Pods_MapFinding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F886F27815CC0523E850981 /* Pods_MapFinding.framework */; };
+		9A0594F620E33646009AE8AB /* TypeAtmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0594F420E33646009AE8AB /* TypeAtmViewController.swift */; };
+		9A0594F720E33646009AE8AB /* TypeAtmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A0594F520E33646009AE8AB /* TypeAtmViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +90,8 @@
 		1DEB3CA020DD5FBF005A14AE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24405DD1460984F9DBC01C54 /* Pods-MapFinding.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapFinding.release.xcconfig"; path = "Pods/Target Support Files/Pods-MapFinding/Pods-MapFinding.release.xcconfig"; sourceTree = "<group>"; };
 		6F886F27815CC0523E850981 /* Pods_MapFinding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapFinding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A0594F420E33646009AE8AB /* TypeAtmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAtmViewController.swift; sourceTree = "<group>"; };
+		9A0594F520E33646009AE8AB /* TypeAtmViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypeAtmViewController.xib; sourceTree = "<group>"; };
 		BF3FCA403174C49A7A52C0DC /* Pods-MapFinding.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapFinding.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MapFinding/Pods-MapFinding.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,6 +173,7 @@
 		1D4D265120822CFC0033F793 /* MapFinding */ = {
 			isa = PBXGroup;
 			children = (
+				9A0594F120E335F7009AE8AB /* Views */,
 				1D40B6C620D668B100C8F9E8 /* State */,
 				1D40B6C120D6675A00C8F9E8 /* Reducers */,
 				1D387D3620D4F89100020818 /* Extensions */,
@@ -232,6 +237,15 @@
 				24405DD1460984F9DBC01C54 /* Pods-MapFinding.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		9A0594F120E335F7009AE8AB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9A0594F420E33646009AE8AB /* TypeAtmViewController.swift */,
+				9A0594F520E33646009AE8AB /* TypeAtmViewController.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,6 +318,7 @@
 				0C01F7B120B40AD00061D0B2 /* hospital.png in Resources */,
 				1D4D265D20822CFC0033F793 /* LaunchScreen.storyboard in Resources */,
 				1D4D265A20822CFC0033F793 /* Assets.xcassets in Resources */,
+				9A0594F720E33646009AE8AB /* TypeAtmViewController.xib in Resources */,
 				1D4D266520822D0A0033F793 /* Podfile in Resources */,
 				1D4D265820822CFC0033F793 /* Main.storyboard in Resources */,
 			);
@@ -396,6 +411,7 @@
 				1D40B6C520D6684100C8F9E8 /* PlaceAction.swift in Sources */,
 				1D40B6C820D668B900C8F9E8 /* AppState.swift in Sources */,
 				1D1A311220D3AC62008BC0FF /* GoogleMaps.swift in Sources */,
+				9A0594F620E33646009AE8AB /* TypeAtmViewController.swift in Sources */,
 				1D4D265520822CFC0033F793 /* ViewController.swift in Sources */,
 				1D4D265320822CFC0033F793 /* AppDelegate.swift in Sources */,
 				1DD23F4020B192FC001BEF22 /* Place.swift in Sources */,
@@ -564,8 +580,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F8SL983M9N;
+				DEVELOPMENT_TEAM = Y82TDH5RL7;
 				INFOPLIST_FILE = MapFinding/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -583,8 +600,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F8SL983M9N;
+				DEVELOPMENT_TEAM = Y82TDH5RL7;
 				INFOPLIST_FILE = MapFinding/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
