@@ -81,9 +81,6 @@ class configureMAP: UIViewController {
                     print( "No details ")
                     return
                 }
-                print ("Place name \(place.name)")
-                print ("Place address \(place.formattedAddress)")
-                print (place.coordinate)
                 placeMarker.title = place.name
                 placeMarker.snippet = place.formattedAddress
                 placeMarker.position.latitude = place.coordinate.latitude

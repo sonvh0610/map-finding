@@ -64,6 +64,73 @@
             </objects>
             <point key="canvasLocation" x="984.79999999999995" y="37.331334332833585"/>
         </scene>
+        <!--Choose your place-->
+        <scene sceneID="hhP-Kp-c4k">
+            <objects>
+                <viewController storyboardIdentifier="ListPlacesViewController" title="Choose your place" id="6uw-nZ-UJl" customClass="ListPlacesViewController" customModule="MapFinding" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mXd-KJ-2jx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fNH-SW-cEA">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="wNk-yI-cDC" detailTextLabel="cBc-W2-CIq" style="IBUITableViewCellStyleSubtitle" id="X7N-eG-iiy">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="X7N-eG-iiy" id="n6C-eP-aY4">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wNk-yI-cDC">
+                                                    <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cBc-W2-CIq">
+                                                    <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="6uw-nZ-UJl" id="yoT-dt-i9J"/>
+                                    <outlet property="delegate" destination="6uw-nZ-UJl" id="CMK-BE-HeV"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fNH-SW-cEA" firstAttribute="bottom" secondItem="Ns1-pj-mPY" secondAttribute="bottom" id="5v7-QV-cJC"/>
+                            <constraint firstItem="fNH-SW-cEA" firstAttribute="trailing" secondItem="Ns1-pj-mPY" secondAttribute="trailing" id="CL9-eP-cfa"/>
+                            <constraint firstItem="fNH-SW-cEA" firstAttribute="top" secondItem="mXd-KJ-2jx" secondAttribute="top" id="I16-T3-r7A"/>
+                            <constraint firstItem="fNH-SW-cEA" firstAttribute="leading" secondItem="Ns1-pj-mPY" secondAttribute="leading" id="WdS-34-gsT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ns1-pj-mPY"/>
+                    </view>
+                    <connections>
+                        <outlet property="listPlaces" destination="fNH-SW-cEA" id="qW5-5J-a95"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bv3-Yt-nZ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationBar contentMode="scaleToFill" id="tne-9D-fYm">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <items>
+                        <navigationItem title="Title" id="AI2-Oc-SL4"/>
+                    </items>
+                </navigationBar>
+            </objects>
+            <point key="canvasLocation" x="1772" y="36.431784107946029"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="RMQ-kx-t0U">
             <objects>

@@ -37,6 +37,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     var bottomBar: Bar!
     var closeButton: IconButton!
     var favoriteButton: IconButton!
+    var moreButton: IconButton!
     
     var typeOfAtm: String = "" // loai ngan hang argibank, sacombank
     
@@ -50,7 +51,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     }
     
     func newState(state: AppState) {
-        // code
+        if (state.place.selectedPlaceIndex > -1) {
+            self.googleMapsComponent.MapInstance?.clear()
+            for place in state.place.listPlaces {
+                self.drawMarkers(place: place)
+            }
+            self.toolbar.title = state.place.listPlaces[state.place.selectedPlaceIndex].Name
+            self.toolbar.detail = state.place.listPlaces[state.place.selectedPlaceIndex].Vicinity
+            
+            let dest = CLLocation(latitude: state.place.listPlaces[state.place.selectedPlaceIndex].Geometry.Location.Latitude, longitude: state.place.listPlaces[state.place.selectedPlaceIndex].Geometry.Location.Longitude)
+            self.googleMapsComponent.showDirections(from: mainStore.state.place.currentLocation, to: dest).done { results in
+                self.contentView.text = "Distance: \(results[0])\nDuration: \(results[1])"
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +80,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         super.viewDidLoad()
         
         // Init categories
-        for item in ["Atm", "gas_station", "hospital","police", "cafe"] {
+        for item in ["atm", "gas_station", "hospital","police", "cafe"] {
             listSelectFeatures.append(Category(name: item))
         }
 
@@ -90,7 +103,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         searchController?.hidesNavigationBarDuringPresentation = false
 
         self.initFeaturePicker()
-        prepareFavoriteButton()
+        prepareBottomButtons()
         prepareCloseButton()
         prepareToolbar()
         prepareContentView()
@@ -147,9 +160,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
         toolbar.detailLabel.textColor = Color.grey.base
     }
     
-    func prepareFavoriteButton() {
+    func prepareBottomButtons() {
         favoriteButton = IconButton(image: Icon.favorite, tintColor: Color.red.base)
         favoriteButton.addTarget(self, action: #selector(self.onBookmarkTapped), for: .touchUpInside)
+        
+        moreButton = IconButton(image: Icon.moreHorizontal, tintColor: Color.blue.base)
+        moreButton.addTarget(self, action: #selector(self.onMoreButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func onMoreButtonTapped() {
+        let listViewController = self.storyboard?.instantiateViewController(withIdentifier: "ListPlacesViewController") as! ListPlacesViewController
+        self.navigationController?.pushViewController(listViewController, animated: true)
     }
     
     @objc private func onBookmarkTapped() {
@@ -180,14 +201,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     }
     
     @objc private func onCloseButtonTapped() {
+        self.googleMapsComponent.MapInstance?.clear()
         self.placeCard.isHidden = true
+        mainStore.dispatch(SelectPlace(index: -1))
     }
     
     func prepareBottomBar() {
         bottomBar = Bar()
         
         bottomBar.leftViews = [favoriteButton]
-//        bottomBar.rightViews = [dateLabel]
+        bottomBar.rightViews = [moreButton]
     }
 
     
@@ -221,19 +244,35 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
             mainStore.dispatch(SaveListPlaces(places: results))
             if (results.count > 0) {
                 let dest = CLLocation(latitude: results[0].Geometry.Location.Latitude, longitude: results[0].Geometry.Location.Longitude)
-                self.googleMapsComponent.showDirections(from: mainStore.state.place.currentLocation, to: dest)
+                self.googleMapsComponent.showDirections(from: mainStore.state.place.currentLocation, to: dest).done { results in
+                    self.contentView.text = "Distance: \(results[0])\nDuration: \(results[1])"
+                }
                 
                 self.placeCard.isHidden = false
                 self.toolbar.title = results[0].Name
                 self.toolbar.detail = results[0].Vicinity
                 
                 mainStore.dispatch(SelectPlace(index: 0))
+                
+                for place in results {
+                    self.drawMarkers(place: place)
+                }
             }
         }
     }
     
+    func drawMarkers(place: Place) {
+        let marker = GMSMarker()
+        marker.title = place.Name
+        marker.snippet = place.Vicinity
+        marker.position.latitude = place.Geometry.Location.Latitude
+        marker.position.longitude = place.Geometry.Location.Longitude
+        marker.appearAnimation = .pop
+        marker.userData = place.PlaceId
+        marker.map = self.googleMapsComponent.MapInstance
+    }
+    
     @objc private func onCancelFeaturePicker() {
-       
         self.featurePickerTxt.resignFirstResponder()
     }
     
@@ -256,12 +295,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewD
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         mainStore.dispatch(SelectFeatureIndex(index: row))
-        print(listSelectFeatures[row].Name)
-        if  listSelectFeatures[row].Name == "Atm" {
-            let viewController = TypeAtmViewController.loadController()
-            viewController.delegate = self
-            self.present(viewController, animated: true, completion: nil)
-        }
+//        if  listSelectFeatures[row].Name == "Atm" {
+//            let viewController = TypeAtmViewController.loadController()
+//            viewController.delegate = self
+//            self.present(viewController, animated: true, completion: nil)
+//        }
     }
 }
 

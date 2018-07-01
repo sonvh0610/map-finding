@@ -6,7 +6,7 @@
   Copyright © 2018 University of Science. All rights reserved.
 */
 
-
+"atm" = "ATM";
 "gas_station" = "Gas Station";
 "hospital" = "Hospital";
 "police" = "Police Station";

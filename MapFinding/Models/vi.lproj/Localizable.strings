@@ -5,6 +5,8 @@
   Created by user137983 on 5/21/18.
   Copyright © 2018 University of Science. All rights reserved.
 */
+
+"atm" = "ATM";
 "Search" = "Tìm kiếm";
 "gas_station" = "Cây xăng";
 "hospital" = "Bệnh viện";

@@ -61,7 +61,6 @@ extension TypeAtmViewController:UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(typeAtm[indexPath.row])
         self.dismiss(animated: true, completion: nil)
         self.delegate?.chooseTypeForAtm(type: typeAtm[indexPath.row])
     }

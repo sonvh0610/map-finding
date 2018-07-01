@@ -49,8 +49,6 @@ final class GoogleMapsComponent {
                             places.append(Place(dict: place))
                         }
                         
-                        print(places)
-                        
                         seal.fulfill(places)
                     case .failure(let error):
                         seal.reject(error)
@@ -59,27 +57,36 @@ final class GoogleMapsComponent {
         }
     }
     
-    public func showDirections(from: CLLocation, to: CLLocation) {
+    public func showDirections(from: CLLocation, to: CLLocation) -> Promise<[String]> {
         let origin = "\(from.coordinate.latitude),\(from.coordinate.longitude)"
         let destination = "\(to.coordinate.latitude),\(to.coordinate.longitude)"
         
         let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=walking"
         
-        Alamofire.request(url).responseJSON { response in
-            do {
-                let json = try JSON(data: response.data!)
-                let routes = json["routes"].arrayValue
-                
-                for route in routes {
-                    let routeOverviewPolyline = route["overview_polyline"].dictionary
-                    let points = routeOverviewPolyline?["points"]?.stringValue
-                    let path = GMSPath.init(fromEncodedPath: points!)
-                    let polyline = GMSPolyline.init(path: path)
-                    polyline.map = self.MapInstance
+        return Promise<[String]> { seal -> Void in
+            Alamofire.request(url).responseJSON { response in
+                do {
+                    let json = try JSON(data: response.data!)
+                    let routes = json["routes"].arrayValue
+                    
+                    for route in routes {
+                        let routeOverviewPolyline = route["overview_polyline"].dictionary
+                        let points = routeOverviewPolyline?["points"]?.stringValue
+                        let path = GMSPath.init(fromEncodedPath: points!)
+                        let polyline = GMSPolyline.init(path: path)
+                        let bounds = GMSCoordinateBounds(path: path!)
+                        polyline.map = self.MapInstance
+                        self.MapInstance?.animate(with: GMSCameraUpdate.fit(bounds, with: UIEdgeInsetsMake(100.0, 50.0, 280.0, 50.0)))
+                    }
+                    
+                    seal.fulfill([
+                        routes[0]["legs"][0]["distance"]["text"].stringValue,
+                        routes[0]["legs"][0]["duration"]["text"].stringValue
+                    ])
                 }
-            }
-            catch {
-                print("Direction error occurs!")
+                catch {
+                    seal.reject("Direction error occurs!" as! Error)
+                }
             }
         }
     }

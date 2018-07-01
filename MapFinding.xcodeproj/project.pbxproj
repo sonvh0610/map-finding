@@ -41,6 +41,7 @@
 		1DEB3C9D20DD5FA2005A14AE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DEB3C9C20DD5FA2005A14AE /* CoreData.framework */; };
 		1DEB3C9F20DD5FB1005A14AE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DEB3C9E20DD5FB1005A14AE /* Foundation.framework */; };
 		1DEB3CA120DD5FBF005A14AE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DEB3CA020DD5FBF005A14AE /* UIKit.framework */; };
+		1DFFC98C20E8CF7500ED58F9 /* ListPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFFC98B20E8CF7500ED58F9 /* ListPlacesViewController.swift */; };
 		36B13DF851A3EB5C2FC6348E /* Pods_MapFinding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F886F27815CC0523E850981 /* Pods_MapFinding.framework */; };
 		9A0594F620E33646009AE8AB /* TypeAtmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0594F420E33646009AE8AB /* TypeAtmViewController.swift */; };
 		9A0594F720E33646009AE8AB /* TypeAtmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A0594F520E33646009AE8AB /* TypeAtmViewController.xib */; };
@@ -88,6 +89,7 @@
 		1DEB3C9C20DD5FA2005A14AE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		1DEB3C9E20DD5FB1005A14AE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1DEB3CA020DD5FBF005A14AE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1DFFC98B20E8CF7500ED58F9 /* ListPlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPlacesViewController.swift; sourceTree = "<group>"; };
 		24405DD1460984F9DBC01C54 /* Pods-MapFinding.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapFinding.release.xcconfig"; path = "Pods/Target Support Files/Pods-MapFinding/Pods-MapFinding.release.xcconfig"; sourceTree = "<group>"; };
 		6F886F27815CC0523E850981 /* Pods_MapFinding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapFinding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A0594F420E33646009AE8AB /* TypeAtmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAtmViewController.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 			children = (
 				9A0594F420E33646009AE8AB /* TypeAtmViewController.swift */,
 				9A0594F520E33646009AE8AB /* TypeAtmViewController.xib */,
+				1DFFC98B20E8CF7500ED58F9 /* ListPlacesViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				1D40B6C020D6048400C8F9E8 /* ViewController+MapViewDelegate.swift in Sources */,
 				0C558334209378710086EABE /* DirectJSonFile.swift in Sources */,
 				1D37E09A20D8E527000BEF46 /* AppReducer.swift in Sources */,
+				1DFFC98C20E8CF7500ED58F9 /* ListPlacesViewController.swift in Sources */,
 				1D387D3520D4EDF300020818 /* Category.swift in Sources */,
 				1DD23F4220B193F3001BEF22 /* Geometry.swift in Sources */,
 				1D387D3A20D4F8C300020818 /* ViewController+AutocompleteDelegate.swift in Sources */,
